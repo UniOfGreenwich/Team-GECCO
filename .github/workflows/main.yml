@@ -1,0 +1,71 @@
+name: "Require PR Approval, Labels, and Assignees"
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+jobs:
+  check-approvals:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check for at least one approved review, specific labels, and assignees
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Determine the pull request number from the event payload.
+            const prNumber = (context.payload.pull_request && context.payload.pull_request.number) || (context.payload.pull_request_review && context.payload.pull_request_review.pull_request.number);
+            if (!prNumber) {
+              console.info("This event does not relate to a pull request. Nothing to validate.");
+              return;
+            }
+
+            // Fetch the pull request details.
+            const { data: pullRequest } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            // Fetch all reviews for the PR.
+            const { data: reviews } = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            // Check for approvals.
+            const approvedUsers = new Set();
+            reviews.forEach(review => {
+              if (review.state === 'APPROVED') {
+                approvedUsers.add(review.user.login);
+              }
+            });
+
+            console.info(`Found ${approvedUsers.size} approved review(s) on PR #${prNumber}`);
+
+            if (approvedUsers.size < 1) {
+              core.setFailed(`At least one approved review is required to proceed. Found ${approvedUsers.size}.`);
+            }
+
+            // Check for specific labels.
+            const requiredLabels = ['required-label']; // Replace with your required labels
+            const prLabels = pullRequest.labels.map(label => label.name);
+
+            const missingLabels = requiredLabels.filter(label => !prLabels.includes(label));
+            if (missingLabels.length > 0) {
+              core.setFailed(`The following required labels are missing: ${missingLabels.join(', ')}`);
+            }
+
+            // Check for assignees.
+            const requiredAssigneesCount = 1; // Set the required number of assignees
+            const assigneesCount = pullRequest.assignees.length;
+
+            if (assigneesCount < requiredAssigneesCount) {
+              core.setFailed(`At least ${requiredAssigneesCount} assignee(s) are required. Found ${assigneesCount}.`);
+            }
+
