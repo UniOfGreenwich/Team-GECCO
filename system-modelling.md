@@ -46,30 +46,8 @@ The application allows users to:
 
 ## 4. Data Flow Diagram
 
-sequenceDiagram
+![Data Flow Diagram](./finance-helper-frontend/src/assets/data-flow-diagram.png)
 
-   participant User
-   participant FinanceFrontend
-   participant RegisterBackend
-   participant LoginBackend
-   participant UserDataBackend
-   participant Database
+## 5. System Architecture Diagram
 
-   User->>FinanceFrontend: Enter registration details
-   FinanceFrontend->>RegisterBackend: Send username, email, password
-   RegisterBackend->>Database: Store hashed password, email and username
-   RegisterBackend-->>FinanceFrontend: Success or error response
-   User->>FinanceFrontend: Enter login credentials
-   FinanceFrontend->>LoginBackend: Send username + password
-   LoginBackend->>Database: Fetch user data
-   Database-->>LoginBackend: Return user data
-   LoginBackend-->>FinanceFrontend: Login success or failure if success send token --> User + Databse with expriation
-   User->>FinanceFrontend: Request savings data
-   FinanceFrontend->>UserDataBackend: Send token + username
-   UserDataBackend->>Database: Validate token, fetch savings data
-   Database-->>UserDataBackend: Return savings data
-   UserDataBackend-->>FinanceFrontend: Send savings data
-   FinanceFrontend-->>User: Display savings dashboard data
-
-   ## 5. System Architecture Diagram
 ![Architecture Diagram](./finance-helper-frontend/src/assets/architecture-diagram.png)
