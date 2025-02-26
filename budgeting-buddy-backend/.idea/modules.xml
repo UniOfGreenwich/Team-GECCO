@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LogInSystem/LogInSystem.iml" filepath="$PROJECT_DIR$/LogInSystem/LogInSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LogInSystem.main.iml" filepath="$PROJECT_DIR$/.idea/modules/LogInSystem.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LogInSystem.test.iml" filepath="$PROJECT_DIR$/.idea/modules/LogInSystem.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/budgeting-buddy-backend.iml" filepath="$PROJECT_DIR$/.idea/budgeting-buddy-backend.iml" />
     </modules>
   </component>

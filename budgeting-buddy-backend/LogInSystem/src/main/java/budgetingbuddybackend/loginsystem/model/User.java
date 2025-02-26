@@ -1,45 +1,27 @@
 package budgetingbuddybackend.loginsystem.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-@Document(collection = "users")
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "user_details")
 public class User {
 
+    @SequenceGenerator(
+            name = "user_details_sequence",
+            sequenceName = "user_details_sequence",
+            allocationSize = 1
+    )
     @Id
-    private String id;
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY,
+            generator = "user_details_sequence"
+    )
+    private Long Id;
+
     private String name;
+
     private String email;
-
-    public User() {
-    }
-
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
