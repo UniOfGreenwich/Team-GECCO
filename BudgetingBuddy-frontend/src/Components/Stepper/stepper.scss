@@ -1,0 +1,70 @@
+$primary-color: #1a4e8a;
+$disabled-color: #d0d7dd;
+$connector-color: #b0b8bf;
+$hover-background-color: #e6ebf1;
+$button-size: 24px;
+$button-padding: 8px;
+$tick-image-size: 11px;
+$transition-duration: 0.3s;
+
+.stepper {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+
+  .step-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+
+    .connector {
+      height: 2px;
+      width: 100%;
+      border-radius: 16px;
+      background: $connector-color;
+    }
+
+    .step-button {
+      display: flex;
+      width: $button-size;
+      height: $button-size;
+      border-radius: 50%;
+      padding: $button-padding;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $primary-color;
+      background-color: #ffffff;
+      color: $primary-color;
+      transition: background-color $transition-duration, border-color $transition-duration;
+
+      &.active {
+        background-color: $primary-color;
+        color: #ffffff;
+      }
+
+      &.disabled {
+        border: 2px solid $disabled-color;
+        color: $disabled-color;
+      }
+
+      &.completed {
+        background-color: #ffffff;
+        border: 2px solid $primary-color;
+        color: $primary-color;
+      }
+
+      &:hover:not(.active):not(.disabled) {
+        background-color: $hover-background-color;
+      }
+
+      .tick-image {
+        width: $tick-image-size;
+        height: $tick-image-size;
+      }
+    }
+  }
+}
+
+  
