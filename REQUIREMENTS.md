@@ -42,7 +42,7 @@ Intuitive user input forms with validation (e.g., amounts, dates, etc.).
 BACK END
 Technologies:
 Springboot and java for RESTful API endpoints.
-Database: MongoDB 
+Database: SQL 
 Authentication: JWT tokens for session management and user authentication.
 Key Features:
 User Registration and Login: Endpoints for user registration, login, and account management (e.g., password reset).

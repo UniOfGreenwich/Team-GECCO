@@ -1,7 +1,6 @@
 package budgetingbuddybackend.loginsystem.model;
 
 import jakarta.persistence.*;
-
 import lombok.Data;
 
 @Entity
@@ -24,4 +23,5 @@ public class User {
     private String name;
 
     private String email;
+  
 }
