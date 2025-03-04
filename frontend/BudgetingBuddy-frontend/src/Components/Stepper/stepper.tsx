@@ -1,7 +1,6 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./stepper.scss";
 import tick from '../../Assets/tick.svg';
-
 
 
 interface Props {

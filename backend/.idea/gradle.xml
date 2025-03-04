@@ -4,10 +4,10 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/BudgetingBuddyAuthenticator" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/LogInSystem" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/BudgetingBuddyAuthenticator" />
+            <option value="$PROJECT_DIR$/LogInSystem" />
           </set>
         </option>
       </GradleProjectSettings>
