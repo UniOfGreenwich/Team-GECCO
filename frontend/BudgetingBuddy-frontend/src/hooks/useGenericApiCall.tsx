@@ -14,7 +14,7 @@ const UseGenericApiCall = <T,>(
     try {
       //RequestInit, has method and headers as already accpeted properties, so use that since its being used in a request. 
       let fetchOptions: RequestInit = {
-        method: method,
+        method: method.toUpperCase(),
       };
 
       if (headers) {
