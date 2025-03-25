@@ -7,7 +7,7 @@ import React, {
   useCallback,
 } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import {PeriodType, UserMoneyInfoContextType, UserMoneyInfo} from '../types/UserMoneyInfoContextTypes'
+import {Frequency, UserMoneyInfoContextType, UserMoneyInfo} from '../types/UserMoneyInfoContextTypes'
 
 
 const UserMoneyInfoContext = createContext<UserMoneyInfoContextType | undefined>(undefined);
@@ -31,7 +31,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
 
   // set income
   const setIncome = useCallback(
-    (amount: number, description: string, period: PeriodType) => {
+    (amount: number, description: string, period: Frequency) => {
       setUserMoneyInfo((prev) => {
         return {
           ...prev,
@@ -56,7 +56,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
       amount: number,
       description: string,
       category: string,
-      period: PeriodType
+      period: Frequency
     ) => {
       setUserMoneyInfo((prev) => {
         return {
@@ -81,7 +81,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
       (
         amount: number,
         name: string,
-        period: PeriodType
+        period: Frequency
       ) => {
           setUserMoneyInfo((prev) => {
               return {
@@ -128,7 +128,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
 
   // helfer function that will noramilise anything to be a monthly charge instead of daily weekly or bi weekly
   const normalizeToMonthly = useCallback(
-    (item: { amount: number; period: PeriodType }) => {
+    (item: { amount: number; period: Frequency }) => {
       let amount = item.amount;
 
       if (item.period === "weekly") {

@@ -1,10 +1,10 @@
-type PeriodType = "daily" | "weekly" | "monthly" | "biweekly";
+type Frequency = "daily" | "weekly" | "monthly" | "biweekly";
 
 interface Income {
     id: string;
     amount: number;
     description: string;
-    period: PeriodType;
+    period: Frequency;
   }
   
   interface Expense {
@@ -12,14 +12,14 @@ interface Income {
     amount: number;
     description: string;
     category: string;
-    period: PeriodType;
+    period: Frequency;
   }
   
   interface Budget {
     id: string;
     name: string;
     amount: number;
-    period: PeriodType;
+    period: Frequency;
   }
   
   interface UserMoneyInfo {
@@ -34,13 +34,13 @@ interface Income {
   
   interface UserMoneyInfoContextType {
     userMoneyInfo: UserMoneyInfo;
-    setIncome: (amount: number, description: string, period: PeriodType) => void;
-    setExpenses: (amount: number, description: string, category: string, period: PeriodType) => void;
-    setBudget: (amount: number, name: string,period: PeriodType) => void;
+    setIncome: (amount: number, description: string, period: Frequency) => void;
+    setExpenses: (amount: number, description: string, category: string, period: Frequency) => void;
+    setBudget: (amount: number, name: string,period: Frequency) => void;
     removeIncome: (id: string) => void;
     removeExpense: (id: string) => void;
     removeBudget: (id: string) => void;
     resetBudgetDashboard: () => void;
   }
 
-export type {Income, Expense, Budget, UserMoneyInfo, UserMoneyInfoContextType, PeriodType};
+export type {Income, Expense, Budget, UserMoneyInfo, UserMoneyInfoContextType, Frequency};
