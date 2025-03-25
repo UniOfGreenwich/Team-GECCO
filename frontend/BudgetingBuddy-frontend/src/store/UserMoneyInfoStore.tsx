@@ -23,6 +23,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
     remainingBalance: 0,
     totalExpenses: 0,
     totalIncome: 0,
+    totalBudgets: 0,
     incomes: [],
     expenses: [],
     budgets: [],
@@ -163,11 +164,13 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
     }, 0);
   }, [userMoneyInfo.budgets, normalizeToMonthly]);
 
+
   useEffect(() => {
     setUserMoneyInfo((prev) => ({
       ...prev,
       totalIncome: calculatedTotalIncome,
       totalExpenses: calculatedTotalExpenses,
+      totalBudgets: calculatedTotalBudgets,
       remainingBalance: calculatedTotalIncome - calculatedTotalExpenses - calculatedTotalBudgets,
     }));
   }, [calculatedTotalIncome, calculatedTotalExpenses, calculatedTotalBudgets]);
@@ -178,6 +181,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
       remainingBalance: 0,
       totalExpenses: 0,
       totalIncome: 0,
+      totalBudgets: 0,
       incomes: [],
       expenses: [],
       budgets: [],

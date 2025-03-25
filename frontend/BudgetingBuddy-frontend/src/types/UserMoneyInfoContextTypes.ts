@@ -26,6 +26,7 @@ interface Income {
     remainingBalance: number;
     totalExpenses: number;
     totalIncome: number;
+    totalBudgets: number;
     incomes: Income[];
     expenses: Expense[];
     budgets: Budget[];
