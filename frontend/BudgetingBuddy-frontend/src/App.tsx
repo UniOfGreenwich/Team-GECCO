@@ -1,6 +1,7 @@
 import { UserMoneyInfoProvider } from './store/UserMoneyInfoStore'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import WelcomeComponent from './Components/Welcome-Component/welcome';
+import WelcomeComponent from './Pages/WelcomePage/welcome';
+import UserInfo from './Pages/GatherUserInforPage/userInformation';
 import './App.css'
 
 
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<WelcomeComponent/>} />
+          <Route path="/get-started" element={<UserInfo/>}/>
 
           
         </Routes>
@@ -20,5 +22,4 @@ function App() {
 }
 
 export default App
-
 
