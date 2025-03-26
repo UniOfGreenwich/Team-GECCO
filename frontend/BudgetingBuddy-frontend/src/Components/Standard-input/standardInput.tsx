@@ -3,19 +3,31 @@ interface Props {
   placeholder?: string;
   value: string | undefined;
   onChange: (value: string) => void;
-  type: string | undefined;
+  type: string;
+  options?: string[];
 }
 
-const StandardInput = ({label, placeholder, value, onChange, type}: Props) => {
+const StandardInput = ({ label, placeholder, value, onChange, type, options }: Props) => {
   return (
     <div>
       {label && <label>{label}</label>}
-      <input
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={(e) => onChange(e.target.value)}
-      />
+      {type !== "select" ? (
+        <input
+          type={type || "text"}
+          value={value || ""}
+          placeholder={placeholder}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      ) : (
+        <select value={value || ""} onChange={(e) => onChange(e.target.value)}>
+          {options &&
+            options.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+        </select>
+      )}
     </div>
   );
 };

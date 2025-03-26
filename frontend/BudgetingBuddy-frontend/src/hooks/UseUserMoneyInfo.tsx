@@ -3,7 +3,7 @@ import { UserMoneyInfoContext } from '../store/UserMoneyInfoStore';
 import { UserMoneyInfoContextType } from '../types/UserMoneyInfoContextTypes';
 
 // use this to get access to all the information functions and stuff inside of the UserMoneyInfoStore
-export const useUserMoneyInfo = (): UserMoneyInfoContextType => {
+export const UseUserMoneyInfo = (): UserMoneyInfoContextType => {
   const context = useContext(UserMoneyInfoContext);
   
   if (context === undefined) {
