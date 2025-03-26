@@ -10,10 +10,11 @@ interface FormField {
 interface DynamicFormProps {
   formValues: FormField[];
   onFormSubmit: (formData: Record<string, string>) => void;
+  options?: string[];
 }
 
 const DynamicForm = (Props: DynamicFormProps) => {
-  const { formValues, onFormSubmit } = Props;
+  const { formValues, onFormSubmit, options } = Props;
   const [formInputtedValues, setFormInputtedValues] = useState<
     Record<string, string>
   >({});
@@ -28,6 +29,7 @@ const DynamicForm = (Props: DynamicFormProps) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onFormSubmit(formInputtedValues);
+    setFormInputtedValues({});
   };
 
   return (
@@ -39,6 +41,7 @@ const DynamicForm = (Props: DynamicFormProps) => {
           type={input.type}
           value={formInputtedValues[input.UniqueId] || ""}
           onChange={(value) => handleChange(value, input.UniqueId)}
+          options={options}
         />
       ))}
       <button type="submit">Submit</button>
