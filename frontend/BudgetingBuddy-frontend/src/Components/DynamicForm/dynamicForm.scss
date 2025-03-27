@@ -1,0 +1,88 @@
+// src/Components/DynamicForm/dynamicForm.scss
+
+.dynamic-form {
+    background-color: #2c2c2c;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; // Space between StandardInput components
+  
+    // Assuming StandardInput renders a wrapper div, e.g., <div class="standard-input-wrapper">
+    // If not, adjust the selector below to target the elements directly
+    .standard-input-wrapper { // Adjust this class if StandardInput uses a different one
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  
+      label {
+        font-weight: 500;
+        color: #b0b0b0;
+        text-align: left;
+        font-size: 0.9em;
+        margin-bottom: 0.1em; // Small space above input
+      }
+  
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      select {
+        padding: 0.8em 1em;
+        border-radius: 6px;
+        border: 1px solid #444;
+        background-color: #3a3a3a;
+        color: #e0e0e0;
+        font-size: 1em;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        width: 100%; // Make inputs take full width within their container
+        box-sizing: border-box;
+  
+        &:focus {
+          outline: none;
+          border-color: #646cff;
+          box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.2);
+        }
+      }
+  
+      select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23b0b0b0' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.414l-4.707-4.707a1 1 0 0 1 1.414-1.414L8 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414L8 11.414z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1em center;
+        background-size: 1em;
+        padding-right: 3em;
+      }
+    }
+  
+  
+    button[type="submit"] {
+      margin-top: 0.5rem; // Reduced top margin as gap handles spacing
+      padding: 0.7em 1.5em;
+      background-color: #4a4a4a;
+      color: #e0e0e0;
+      border: none;
+      border-radius: 6px;
+      align-self: flex-start;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+  
+      &:hover {
+        background-color: #5a5a5a;
+      }
+  
+      // Optional: Style for when the form might be submitting
+      // &:disabled {
+      //   background-color: #3a3a3a;
+      //   color: #777;
+      //   cursor: not-allowed;
+      // }
+    }
+  }
+  
+  // Add styles for StandardInput component itself if needed,
+  // e.g., if it needs a default wrapper class
+  // .standard-input-wrapper { ... }
