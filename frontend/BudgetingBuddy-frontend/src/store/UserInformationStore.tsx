@@ -1,4 +1,4 @@
-import { createContext, useCallback, useMemo, useState } from "react";
+import { createContext, useCallback, useEffect, useMemo, useState } from "react";
 
 import { ReactNode } from "react";
 import { UserInfoContextType, UserInfoStateType } from "../types/UserInfoContextTypes";
@@ -52,6 +52,10 @@ export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
       };
     });
   }, []);
+
+  useEffect(() => {
+    console.log(userInfo)
+  },[userInfo]);
 
   const ctxValue = useMemo(() => {
     return {
