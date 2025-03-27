@@ -1,4 +1,5 @@
 import { UserMoneyInfoProvider } from './store/UserMoneyInfoStore';
+import { UserInfoContextTypeProvider } from './store/UserInformationStore';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import WelcomeComponent from './Pages/WelcomePage/welcome';
 import UserInfo from './Pages/GatherUserInforPage/userInformation';
@@ -12,6 +13,7 @@ import './App.css';
 
 function App() {
   return (
+    <UserInfoContextTypeProvider>
     <UserMoneyInfoProvider>
       <BrowserRouter>
         <Routes>
@@ -26,6 +28,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </UserMoneyInfoProvider>
+    </UserInfoContextTypeProvider>
   );
 }
 
