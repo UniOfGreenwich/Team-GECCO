@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import StandardInput from "../Standard-input/standardInput";
 
 interface FormField {
@@ -11,10 +11,11 @@ interface DynamicFormProps {
   formValues: FormField[];
   onFormSubmit: (formData: Record<string, string>) => void;
   options?: string[];
+  className?: string;
 }
 
 const DynamicForm = (Props: DynamicFormProps) => {
-  const { formValues, onFormSubmit, options } = Props;
+  const { formValues, onFormSubmit, options, className } = Props;
   const [formInputtedValues, setFormInputtedValues] = useState<
     Record<string, string>
   >({});
@@ -26,14 +27,28 @@ const DynamicForm = (Props: DynamicFormProps) => {
     }));
   };
 
+  useEffect(() => {
+    console.log(formInputtedValues)
+    console.log(formValues.forEach(field => {
+      console.log(field.UniqueId)
+    }))
+  },[formValues, formInputtedValues])
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onFormSubmit(formInputtedValues);
-    setFormInputtedValues({});
+
+    const clearedState: Record<string, string> = {};
+    formValues.forEach(field => {
+      clearedState[field.UniqueId] = '';
+    });
+    setFormInputtedValues(prevState => ({ ...prevState, ...clearedState })); 
   };
 
+   const formClassName = `dynamic-form ${className || ''}`.trim();
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={formClassName}>
       {formValues.map((input: FormField) => (
         <StandardInput
           key={input.UniqueId}
@@ -42,9 +57,10 @@ const DynamicForm = (Props: DynamicFormProps) => {
           value={formInputtedValues[input.UniqueId] || ""}
           onChange={(value) => handleChange(value, input.UniqueId)}
           options={options}
+          required={true} 
         />
       ))}
-      <button type="submit">Submit</button>
+      <button type="submit">Add</button>
     </form>
   );
 };

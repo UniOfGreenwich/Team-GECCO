@@ -29,6 +29,10 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
     budgets: [],
   });
 
+  useEffect(() => {
+    console.log(`usermoney info:`);
+    console.log(userMoneyInfo);
+  }, [userMoneyInfo])
   // set income
   const setIncome = useCallback(
     (amount: number, description: string, period: Frequency) => {
