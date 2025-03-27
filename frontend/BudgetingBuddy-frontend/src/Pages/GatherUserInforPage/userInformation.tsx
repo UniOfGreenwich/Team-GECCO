@@ -3,8 +3,9 @@ import DynamicForm from "../../Components/DynamicForm/dynamicForm";
 import Stepper from "../../Components/Stepper/stepper";
 import frequencyVal from "../../assets/frequencyArr";
 import { UseUserMoneyInfo } from "../../hooks/UseUserMoneyInfo";
+import { UseUserInfo } from "../../hooks/UseUserInfo";
 import { Frequency } from "../../types/UserMoneyInfoContextTypes";
-import './userinfo.scss'
+import "./userinfo.scss";
 
 const formFieldsMap: Record<
   number,
@@ -42,12 +43,14 @@ const UserInfo = () => {
   const { setIncome, setExpenses, removeIncome, removeExpense, userMoneyInfo } =
     moneyContext;
 
+  const userContext = UseUserInfo();
+  const { setEmail, setName, userInfo } = userContext;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const canProceedToNextStep = (): boolean => {
     switch (currentIndex) {
       case 0:
-        return true;
+        return userInfo.email !== undefined && userInfo.name !== undefined;
       case 1:
         return userMoneyInfo.incomes.length > 0;
       case 2:
@@ -60,8 +63,8 @@ const UserInfo = () => {
   const handleFormSubmit = (stepData: Record<string, string>) => {
     switch (currentIndex) {
       case 0:
-        console.log(stepData);
-        handleNextStep();
+        setEmail(stepData.email);
+        setName(stepData.name);
         break;
       case 1:
         setIncome(
@@ -96,7 +99,7 @@ const UserInfo = () => {
     }
   };
 
-  const isNextDisabled = !canProceedToNextStep() && currentIndex < steps -1;
+  const isNextDisabled = !canProceedToNextStep() && currentIndex < steps - 1;
 
   return (
     <div className="user-info-page">
@@ -112,11 +115,12 @@ const UserInfo = () => {
         onFormSubmit={handleFormSubmit}
         options={frequencyVal}
         className="dynamic-form"
+        dontClearFields={currentIndex === 0}
       />
       {currentIndex < steps - 1 && (
-         <button onClick={handleNextStep} disabled={isNextDisabled}>
-            Next Step
-         </button>
+        <button onClick={handleNextStep} disabled={isNextDisabled}>
+          Next Step
+        </button>
       )}
       {currentIndex === 1 ? (
         <div className="info-container">
@@ -150,7 +154,9 @@ const UserInfo = () => {
               </tbody>
             </table>
           ) : (
-            <p className="empty-message">No incomes added yet. Add an income using the form above.</p>
+            <p className="empty-message">
+              No incomes added yet. Add an income using the form above.
+            </p>
           )}
         </div>
       ) : currentIndex === 2 ? (
@@ -187,7 +193,9 @@ const UserInfo = () => {
               </tbody>
             </table>
           ) : (
-            <p className="empty-message">No expenses added yet. Add an expense using the form above.</p>
+            <p className="empty-message">
+              No expenses added yet. Add an expense using the form above.
+            </p>
           )}
         </div>
       ) : null}

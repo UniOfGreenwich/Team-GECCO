@@ -12,10 +12,11 @@ interface DynamicFormProps {
   onFormSubmit: (formData: Record<string, string>) => void;
   options?: string[];
   className?: string;
+  dontClearFields?: boolean
 }
 
 const DynamicForm = (Props: DynamicFormProps) => {
-  const { formValues, onFormSubmit, options, className } = Props;
+  const { formValues, onFormSubmit, options, className, dontClearFields } = Props;
   const [formInputtedValues, setFormInputtedValues] = useState<
     Record<string, string>
   >({});
@@ -39,13 +40,15 @@ const DynamicForm = (Props: DynamicFormProps) => {
     onFormSubmit(formInputtedValues);
 
     const clearedState: Record<string, string> = {};
-    formValues.forEach(field => {
-      clearedState[field.UniqueId] = '';
-    });
+    if(!dontClearFields){
+      formValues.forEach(field => {
+        clearedState[field.UniqueId] = '';
+      });
+    }
     setFormInputtedValues(prevState => ({ ...prevState, ...clearedState })); 
   };
 
-   const formClassName = `dynamic-form ${className || ''}`.trim();
+   const formClassName = `dynamic-form ${className || ''}`.trim(); 
 
   return (
     <form onSubmit={handleSubmit} className={formClassName}>
