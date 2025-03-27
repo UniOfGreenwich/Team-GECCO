@@ -21,7 +21,7 @@ const WelcomeComponent = () => {
           <button onClick={() => navigate('/get-started')}>
             Start Your New Journey
           </button>
-          <button onClick={() => navigate('/dashboard')}>
+          <button onClick={() => navigate('/signin')}>
             Sign In To View Existing
           </button>
         </div>

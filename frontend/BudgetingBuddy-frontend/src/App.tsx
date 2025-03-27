@@ -6,6 +6,8 @@ import AboutUs from './Pages/AboutUsPage/aboutus';
 import Contact from './Pages/ContactPage/contact';
 import Help from './Pages/HelpPage/help';
 import Privacy from './Pages/PrivacyPage/privacy';
+import SignIn from './Pages/SignInPage/signin';
+import Dashboard from './Pages/DashboardPage/dashboard';
 import './App.css';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/help' element={<Help />} />
           <Route path='/privacy' element={<Privacy />} />
+          <Route path='/signin' element={<SignIn />} />
+          <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </UserMoneyInfoProvider>
