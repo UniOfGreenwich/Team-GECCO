@@ -3,7 +3,8 @@ import { useState } from "react";
 const UseGenericApiCall = <T,>(
   url: string,
   method: string,
-  headers: {} | null
+  headers: {} | null,
+  body?: any 
 ) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<T | null>(null);
@@ -12,7 +13,6 @@ const UseGenericApiCall = <T,>(
   const fetchData = async () => {
     setLoading(true);
     try {
-      //RequestInit, has method and headers as already accpeted properties, so use that since its being used in a request. 
       let fetchOptions: RequestInit = {
         method: method.toUpperCase(),
       };
@@ -21,6 +21,13 @@ const UseGenericApiCall = <T,>(
         fetchOptions = {
           ...fetchOptions,
           headers: headers,
+        };
+      }
+
+      if (body) {
+        fetchOptions = {
+          ...fetchOptions,
+          body: JSON.stringify(body),
         };
       }
 
