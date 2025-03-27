@@ -17,6 +17,7 @@ export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
   const [userInfo, setUserInfo] = useState<UserInfoStateType>({
     email: undefined,
     name: undefined,
+    userName: undefined,
     password: undefined,
   });
 
@@ -51,7 +52,16 @@ export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
         password: password,
       };
     });
-  }, []);
+  }, [setUserInfo]);
+
+  const setUserName = useCallback((userName: string) => {
+    setUserInfo((prev) => {
+        return {
+            ...prev, 
+            userName: userName
+        }
+    })
+  }, [setUserInfo])
 
   useEffect(() => {
     console.log(userInfo)
@@ -63,6 +73,7 @@ export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
       setEmail: setEmail,
       setName: setName,
       setPassword: setPassword,
+      setUserName: setUserName,
     };
   }, [userInfo]);
 
