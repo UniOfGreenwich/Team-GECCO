@@ -5,9 +5,18 @@ interface Props {
   onChange: (value: string) => void;
   type: string;
   options?: string[];
+  required: boolean
 }
 
-const StandardInput = ({ label, placeholder, value, onChange, type, options }: Props) => {
+const StandardInput = ({
+  label,
+  placeholder,
+  value,
+  onChange,
+  type,
+  options,
+  required
+}: Props) => {
   return (
     <div>
       {label && <label>{label}</label>}
@@ -17,9 +26,17 @@ const StandardInput = ({ label, placeholder, value, onChange, type, options }: P
           value={value || ""}
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
+          required={required}
         />
       ) : (
-        <select value={value || ""} onChange={(e) => onChange(e.target.value)}>
+        <select
+          value={value || ""}
+          onChange={(e) => onChange(e.target.value)}
+          required={required}
+        >
+          <option value="" disabled>
+            Select {label}
+          </option>
           {options &&
             options.map((option) => (
               <option key={option} value={option}>
