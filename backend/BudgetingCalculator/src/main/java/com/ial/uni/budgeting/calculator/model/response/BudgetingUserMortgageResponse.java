@@ -15,5 +15,4 @@ public class BudgetingUserMortgageResponse {
     private double savingDuration;
     private double monthlyMortgageSaving;
 
-
 }

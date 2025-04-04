@@ -4,8 +4,7 @@ import com.ial.uni.budgeting.calculator.model.BudgetingUserRequest;
 import com.ial.uni.budgeting.calculator.model.response.BudgetingUserMortgageResponse;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import static com.ial.uni.budgeting.calculator.util.FinanceUtil.truncateDownToZeroDecimals;
 
 @Service
 public class BudgetingMortgageDeposit {
@@ -15,9 +14,8 @@ public class BudgetingMortgageDeposit {
 
         double housePrice = request.getHousePrice();
         double depositPercentage = calculateDepositPercentage(housePrice, response);
-        calculateDepositAmount(housePrice, depositPercentage, response);
         double depositAmount = calculateDepositAmount(housePrice, depositPercentage, response);
-        double savingMonthlyAmount = request.getSavingAmountMonthly();
+        double savingMonthlyAmount = request.getAvailableBudgetingAmount();
         savingDuration(depositAmount, savingMonthlyAmount, response);
         return response;
     }
@@ -44,17 +42,10 @@ public class BudgetingMortgageDeposit {
         return depositAmount;
     }
 
-    private double savingDuration(double depositAmount, double savingMonthlyAmount, BudgetingUserMortgageResponse response) {
-        double savingDuration = truncateDownToTwoDecimals(depositAmount / savingMonthlyAmount);
+    private void savingDuration(double depositAmount, double savingMonthlyAmount, BudgetingUserMortgageResponse response) {
+        double savingDuration = truncateDownToZeroDecimals(depositAmount / savingMonthlyAmount);
         response.setSavingDuration(savingDuration);
         response.setMonthlyMortgageSaving(savingMonthlyAmount);
-        return savingDuration;
-    }
-
-    private static double truncateDownToTwoDecimals(Double number) {
-        BigDecimal bd = BigDecimal.valueOf(number);
-        bd = bd.setScale(0, RoundingMode.UP);
-        return bd.doubleValue();
     }
 
 }
