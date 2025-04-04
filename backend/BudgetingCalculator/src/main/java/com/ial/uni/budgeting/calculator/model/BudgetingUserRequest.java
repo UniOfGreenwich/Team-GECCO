@@ -9,8 +9,17 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BudgetingUserRequest {
 
-    private double housePrice;
-    private double savingAmountMonthly;
+    //saving amounts
+    private Double availableBudgetingAmount;
+
+    //mortgage deposit fields
+    private Double housePrice;
+
+    //hire-purchase car finance fields
+    private Double carSellingPrice;
+    private Double carDeposit;
+    private Double apr;
+    private int term;
 
 }
 
