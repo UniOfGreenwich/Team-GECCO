@@ -9,6 +9,7 @@ import Help from './Pages/HelpPage/help';
 import Privacy from './Pages/PrivacyPage/privacy';
 import SignIn from './Pages/SignInPage/signin';
 import Dashboard from './Pages/DashboardPage/dashboard';
+import MortgageCalculatorPage from './Pages/MortageCalculator/mortgageCalculatorPage';
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path='/privacy' element={<Privacy />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/mortgage-calc' element={<MortgageCalculatorPage/>} />
         </Routes>
       </BrowserRouter>
     </UserMoneyInfoProvider>
