@@ -21,7 +21,7 @@ interface Budget {
   amount: number;
   period: Frequency;
 
-  // this is needed as since we dont know what reposne we will get from miss Mahers backend we need to be able to accept multiple addiotnal properties to be used in the dashbaprd
+  // this is needed as since we dont know what response we will get from miss Mahers backend we need to be able to accept multiple additional properties to be used in the dashboard
   [key: string]: any;
 }
 
