@@ -1,6 +1,4 @@
-// Variable definitions
 $primary-color: #1a4e8a;
-$completed-color: #10b981;
 $disabled-color: #d0d7dd;
 $connector-color: #b0b8bf;
 $hover-background-color: #e6ebf1;
@@ -8,152 +6,86 @@ $button-size: 24px;
 $button-padding: 8px;
 $tick-image-size: 11px;
 $transition-duration: 0.3s;
-$button-total-size: $button-size + ($button-padding * 2);
 
 .stepper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding-bottom: 50px;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-}
+  justify-content: center; 
+  align-items: center;    
+  gap: 4px;                
+  padding-bottom: 50px;    
+  width: 100%;             
 
-.step-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: auto;
-  min-width: 60px;
-
-  // --- Button Styles (Base) ---
-  .step-button {
+  .step-container {
     display: flex;
-    flex-shrink: 0;
-    width: $button-total-size;
-    height: $button-total-size;
-    border-radius: 50%;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    border: 2px solid $connector-color; // Default border
-    background-color: #ffffff;
-    color: $connector-color; // Default number color
-    transition: background-color $transition-duration,
-      border-color $transition-duration, color $transition-duration;
-    cursor: pointer;
-    font-weight: bold;
-    z-index: 1;
+    gap: 4px;          
+    flex-grow: 1;       
+    flex-basis: 0;      
 
-    .tick-image {
-      width: $tick-image-size;
-      height: $tick-image-size;
-      display: block;
 
-      filter: brightness(0) invert(1);
-    }
-  }
-
-  // --- Step Title Styles (Base) ---
-  .step-title {
-    font-size: 0.8rem;
-    color: $disabled-color;
-    margin-top: 6px;
-    line-height: 1.2;
-    text-align: center;
-    max-width: 80px;
-    word-wrap: break-word;
-    transition: color $transition-duration, font-weight $transition-duration;
-  }
-
-  // --- State Styles ---
-
-  &.completed {
-    .step-button {
-      background-color: $completed-color; // Use GREEN background
-      border-color: $completed-color; // Use GREEN border
-      color: #ffffff; // Keep tick white
-      cursor: pointer;
-
-      &:hover {
-        background-color: darken($completed-color, 10%);
-        border-color: darken($completed-color, 10%);
-      }
-    }
-    .step-title {
-      color: $completed-color;
-      font-weight: 500;
+    &:last-child {
+      flex-grow: 0;
     }
 
     .connector {
-      background: $completed-color; // Make connector GREEN
+      height: 2px;
+      flex-grow: 1;
+      border-radius: 16px;
+      background: $connector-color; 
     }
-  }
 
-  // --- Active State ---
-  &.active {
     .step-button {
-      background-color: #ffffff; // White background
-      border-color: $primary-color; // Blue border
-      color: $primary-color; // Blue number color
-      cursor: default;
-    }
-    .step-title {
-      color: $primary-color;
-      font-weight: 700;
-    }
-  }
-
-  // --- Disabled State ---
-  &.disabled {
-    .step-button {
-      border-color: $disabled-color;
-      color: $disabled-color;
+      display: flex;
+      flex-shrink: 0;
+      width: $button-size;
+      height: $button-size;
+      border-radius: 50%;
+      padding: $button-padding;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $primary-color;
       background-color: #ffffff;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-    .step-title {
-      color: $disabled-color;
-      opacity: 0.7;
-    }
-  }
+      color: $primary-color;
+      transition: background-color $transition-duration, border-color $transition-duration;
+      cursor: pointer; 
 
-  .connector {
-    height: 2px;
-    border-radius: 16px;
-    background: $connector-color;
-    transition: background-color $transition-duration;
-    position: absolute;
-    top: ($button-total-size / 2) - 1px;
-    left: 50%;
-    transform: translateX(($button-total-size / 2) + 5px);
-    width: 100px;
-    z-index: 0;
-  }
 
-  &:last-child .connector {
-    display: none;
+      &.disabled {
+        border: 2px solid $disabled-color;
+        color: $disabled-color;
+        cursor: not-allowed; 
+        pointer-events: none;
+      }
+
+      &.active {
+        background-color: $primary-color;
+        color: #ffffff;
+      }
+
+      &.completed {
+        background-color: #ffffff;
+        border: 2px solid $primary-color;
+        color: $primary-color;
+
+  
+        &:hover {
+           background-color: $hover-background-color;
+        }
+      }
+
+      &:hover:not(.active):not(.disabled) {
+        background-color: $hover-background-color;
+      }
+
+      .tick-image {
+        width: $tick-image-size;
+        height: $tick-image-size;
+        display: block;
+      }
+    }
   }
 }
 
-// --- Responsive adjustments ---
-@media (max-width: 600px) {
-  .stepper {
-    max-width: 95%;
-  }
-  .step-container {
-    min-width: 50px;
-  }
-  .step-title {
-    font-size: 0.7rem;
-    max-width: 50px;
-  }
-  .connector {
-    width: 80px;
-  }
-}
+
