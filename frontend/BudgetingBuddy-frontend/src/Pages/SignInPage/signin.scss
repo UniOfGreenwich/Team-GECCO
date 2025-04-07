@@ -1,53 +1,198 @@
-/* signin.scss */
-.signin-container {
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+
+$primary-font: 'Boldonse', sans-serif;
+$secondary-font: sans-serif;
+$primary-color-dark: #1a56db;
+$primary-color-medium: #3b82f6;
+$text-color-light: #ffffff;
+$text-color-dark: #125dc6;
+$text-color-medium: #374151;
+$text-color-muted: #6b7280;
+$background-light: #f9fafb;
+$card-background: #ffffff;
+$card-border-radius: 8px;
+$card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$negative-color: #ef4444;
+$input-border-color: #d1d5db;
+$input-focus-border-color: $primary-color-medium;
+
+.signin-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $background-light;
+  padding: 1rem;
+}
+
+.signin-card {
+  position: relative;
+  background-color: $card-background;
+  padding: 2.5rem 2.5rem;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  box-sizing: border-box;
+
+  .back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: none;
+    border: none;
+    color: $text-color-muted;
+    font-family: $secondary-font;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      color: $text-color-medium;
+      background-color: darken($background-light, 5%);
+    }
+
+    &:active {
+      color: $text-color-dark;
+    }
+  }
+}
+
+.signin-title {
+  font-family: $primary-font;
+  font-size: 2rem;
+  color: $primary-color-dark;
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  font-weight: normal;
+  padding-top: 1rem;
+}
+
+.signin-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  text-align: center;
+  gap: 1.5rem;
+}
 
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #1a56db;
+.form-group {
+  text-align: left;
+
+  label {
+    display: block;
+    font-family: $secondary-font;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $text-color-medium;
+    margin-bottom: 0.5rem;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    gap: 1rem;
+  input[type='text'],
+  input[type='password'] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: $secondary-font;
+    color: $text-color-dark;
+    border: 1px solid $input-border-color;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
-    input {
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
+    &:focus {
+      outline: none;
+      border-color: $input-focus-border-color;
+      box-shadow: 0 0 0 3px rgba($primary-color-medium, 0.15);
     }
 
-    .error-message {
-      color: red;
-      font-size: 0.875rem;
+    &::placeholder {
+      color: $text-color-muted;
+      opacity: 0.9;
     }
 
-    button {
-      background-color: #3b82f6;
-      color: #fff;
-      border: none;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
+    &[aria-invalid='true'] {
+      border-color: $negative-color;
 
-      &:hover {
-        background-color: #2563eb;
+      &:focus {
+        box-shadow: 0 0 0 3px rgba($negative-color, 0.15);
       }
+    }
+  }
+}
 
-      &:active {
-        background-color: #1d4ed8;
-      }
+.error-message {
+  color: $negative-color;
+  background-color: lighten($negative-color, 40%);
+  border: 1px solid lighten($negative-color, 30%);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-family: $secondary-font;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: -0.5rem 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.signin-button {
+  background-color: $primary-color-dark;
+  color: $text-color-light;
+  border: none;
+  border-radius: 6px;
+  padding: 0.9rem 1.5rem;
+  font-family: $secondary-font;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  width: 100%;
+  margin-top: 0.5rem;
+
+  &:hover {
+    background-color: lighten($primary-color-dark, 5%);
+  }
+
+  &:active {
+    background-color: darken($primary-color-dark, 5%);
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    background-color: $text-color-muted;
+    cursor: not-allowed;
+  }
+}
+
+.signin-links {
+  margin-top: 1.5rem;
+  font-family: $secondary-font;
+  font-size: 0.9rem;
+  color: $text-color-medium;
+
+  .signup-link-button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    color: $primary-color-dark;
+    background-color: transparent;
+    border: 1px solid $primary-color-dark;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: lighten($primary-color-dark, 60%);
+      color: $primary-color-dark;
+      text-decoration: none;
+    }
+
+    &:active {
+      background-color: lighten($primary-color-dark, 55%);
+      transform: scale(0.98);
     }
   }
 }
