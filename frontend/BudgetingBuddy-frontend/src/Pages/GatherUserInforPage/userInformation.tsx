@@ -40,18 +40,16 @@ const UserInfo = () => {
     Array<{ label: string; type: string; UniqueId: string; value?: string }>
   > = {
     0: [
-      { label: 'Name', type: 'text', UniqueId: 'name', value: userInfo.name },
+      { label: 'Name', type: 'text', UniqueId: 'name', },
       {
         label: 'Email',
         type: 'email',
         UniqueId: 'email',
-        value: userInfo.email,
       },
       {
         label: 'Password',
         type: 'password',
         UniqueId: 'password',
-        value: userInfo.password,
       },
     ],
     1: [
@@ -169,7 +167,7 @@ const UserInfo = () => {
             onFormSubmit={handleFormSubmit}
             options={frequencyVal}
             className='dynamic-form'
-            dontClearFields={false}
+            dontClearFields={currentIndex === 1}
             buttonName={currentButtonName}
           />
           <div className='info-container'>
