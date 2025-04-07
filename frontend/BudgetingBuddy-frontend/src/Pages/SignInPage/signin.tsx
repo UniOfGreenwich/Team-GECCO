@@ -23,7 +23,7 @@ const SignIn: React.FC = () => {
     <div className='signin-page-container'>
       <div className='signin-card'>
         <button className='back-button' onClick={() => navigate('/')}>
-          ← Back to Welcome
+          ← Back
         </button>
 
         <h2 className='signin-title'>Budgeting Buddy Sign In</h2>

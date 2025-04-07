@@ -31,6 +31,10 @@ const UserInfo = () => {
     navigate('/selection');
   };
 
+  const handleBackToWelcome = () => {
+    navigate('/');
+  };
+
   const formFieldsMap: Record<
     number,
     Array<{ label: string; type: string; UniqueId: string; value?: string }>
@@ -251,6 +255,9 @@ const UserInfo = () => {
       </div>
       {renderStepContent()}
       <div className='navigation-buttons'>
+        <button className='back-button' onClick={handleBackToWelcome}>
+          ← Back
+        </button>
         {currentIndex < steps - 1 && (
           <button
             onClick={handleNextStep}
