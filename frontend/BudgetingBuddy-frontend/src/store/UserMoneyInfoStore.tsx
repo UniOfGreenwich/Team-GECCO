@@ -9,7 +9,6 @@ import React, {
 import { v4 as uuidv4 } from 'uuid';
 import {Frequency, UserMoneyInfoContextType, UserMoneyInfo} from '../types/UserMoneyInfoContextTypes'
 
-const STORAGE_KEY = "userMoneyInfo";
 
 const UserMoneyInfoContext = createContext<UserMoneyInfoContextType | undefined>(undefined);
 
@@ -17,47 +16,23 @@ interface UserMoneyInfoProviderProps {
   children: ReactNode;
 }
 
-const initialState: UserMoneyInfo = {
-  remainingBalance: 0,
-  totalExpenses: 0,
-  totalIncome: 0,
-  totalBudgets: 0,
-  incomes: [],
-  expenses: [],
-  budgets: [],
-};
-
-const loadFromSessionStorage = (): UserMoneyInfo => {
-  try {
-    const storedData = sessionStorage.getItem(STORAGE_KEY);
-    if (storedData) {
-      return JSON.parse(storedData);
-    }
-  } catch (error) {
-    console.error('Error loading from session storage:', error);
-  }
-  return initialState;
-};
-
-const saveToSessionStorage = (state: UserMoneyInfo): void => {
-  try {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch (error) {
-    console.error('Error saving to session storage:', error);
-  }
-};
-
 export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
   children,
 }) => {
-  const [userMoneyInfo, setUserMoneyInfo] = useState<UserMoneyInfo>(loadFromSessionStorage());
+  const [userMoneyInfo, setUserMoneyInfo] = useState<UserMoneyInfo>({
+    remainingBalance: 0,
+    totalExpenses: 0,
+    totalIncome: 0,
+    totalBudgets: 0,
+    incomes: [],
+    expenses: [],
+    budgets: [],
+  });
 
   useEffect(() => {
-    saveToSessionStorage(userMoneyInfo);
-    console.log(`usermoney info updated and saved to session storage:`);
+    console.log(`usermoney info:`);
     console.log(userMoneyInfo);
-  }, [userMoneyInfo]);
-
+  }, [userMoneyInfo])
   // set income
   const setIncome = useCallback(
     (amount: number, description: string, period: Frequency) => {
@@ -110,8 +85,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
       (
         amount: number,
         name: string,
-        period: Frequency,
-        additionalProps?: any
+        period: Frequency
       ) => {
           setUserMoneyInfo((prev) => {
               return {
@@ -123,7 +97,6 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
                           amount: amount,
                           name: name,
                           period: period,
-                          ...additionalProps
                       },
                   ],
               };
@@ -179,28 +152,19 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
 
   const calculatedTotalIncome = useMemo(() => {
     return userMoneyInfo.incomes.reduce((total, income) => {
-      return total + normalizeToMonthly({
-        amount: Number(income.amount),
-        period: income.period
-      });
+      return total + normalizeToMonthly(income);
     }, 0);
   }, [userMoneyInfo.incomes, normalizeToMonthly]);
 
   const calculatedTotalExpenses = useMemo(() => {
     return userMoneyInfo.expenses.reduce((total, expense) => {
-      return total + normalizeToMonthly({
-        amount: Number(expense.amount),
-        period: expense.period
-      });
+      return total + normalizeToMonthly(expense);
     }, 0);
   }, [userMoneyInfo.expenses, normalizeToMonthly]);
 
   const calculatedTotalBudgets = useMemo(() => {
     return userMoneyInfo.budgets.reduce((total, budget) => {
-      return total + normalizeToMonthly({
-        amount: Number(budget.amount),
-        period: budget.period
-      });
+      return total + normalizeToMonthly(budget);
     }, 0);
   }, [userMoneyInfo.budgets, normalizeToMonthly]);
 
@@ -217,7 +181,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
 
   // Clear all information , this will be used when creating a diferent dashboard. // need to think about changing it to first send the data to the DB then clear so can be retrived
   const resetBudgetDashboard = useCallback(() => {
-    const newState = {
+    setUserMoneyInfo({
       remainingBalance: 0,
       totalExpenses: 0,
       totalIncome: 0,
@@ -225,9 +189,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
       incomes: [],
       expenses: [],
       budgets: [],
-    };
-    setUserMoneyInfo(newState);
-    sessionStorage.removeItem(STORAGE_KEY);
+    });
   }, []);
 
   const value = useMemo(
