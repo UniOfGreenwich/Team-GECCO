@@ -5,7 +5,8 @@ import './selection.scss';
 interface Option {
   key: string;
   label: string;
-  iconClass: string; // For an icon class or a path to an icon image
+  iconClass: string;
+  description: string;
 }
 
 const Selection: React.FC = () => {
@@ -13,15 +14,57 @@ const Selection: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
 
-  // List of options with placeholder icon classes (e.g., Font Awesome).
-  // You can use images or React icons instead.
   const options: Option[] = [
-    { key: 'car', label: 'Car Finance', iconClass: 'fa fa-car' },
-    { key: 'mortgage', label: 'Mortgage Plan', iconClass: 'fa fa-home' },
-    { key: 'holiday', label: 'Holiday', iconClass: 'fa fa-plane' },
-    { key: 'pension', label: 'Pension', iconClass: 'fa fa-money' },
-    { key: 'custom', label: 'Custom Savings', iconClass: 'fa fa-piggy-bank' },
-    { key: 'wedding', label: 'Wedding', iconClass: 'fa fa-heart' },
+    {
+      key: 'car',
+      label: 'Car Finance',
+      iconClass: 'fas fa-car',
+      description: 'Plan your savings for purchasing a new or used car.',
+    },
+    {
+      key: 'mortgage',
+      label: 'Mortgage Plan',
+      iconClass: 'fas fa-home',
+      description:
+        'Calculate savings needed for a house deposit and repayments.',
+    },
+    {
+      key: 'holiday',
+      label: 'Holiday',
+      iconClass: 'fas fa-plane-departure',
+      description: 'Save up for your next vacation or travel adventure.',
+    },
+    {
+      key: 'pension',
+      label: 'Pension',
+      iconClass: 'fas fa-piggy-bank',
+      description: 'Explore strategies for boosting your retirement savings.',
+    },
+    {
+      key: 'custom',
+      label: 'Custom Savings',
+      iconClass: 'fas fa-sack-dollar',
+      description: 'Set up a personalized savings goal for anything else.',
+    },
+    {
+      key: 'wedding',
+      label: 'Wedding',
+      iconClass: 'fas fa-ring',
+      description:
+        'Plan and save for the costs associated with your wedding day.',
+    },
+    {
+      key: 'emergency',
+      label: 'Emergency Fund',
+      iconClass: 'fas fa-shield-alt',
+      description: 'Build a safety net for unexpected expenses or income loss.',
+    },
+    {
+      key: 'education',
+      label: 'Education Savings',
+      iconClass: 'fas fa-user-graduate',
+      description: 'Save for tuition, books, or other education-related costs.',
+    },
   ];
 
   const handleSelectOption = (key: string) => {
@@ -29,48 +72,80 @@ const Selection: React.FC = () => {
     setErrorMessage('');
   };
 
+  const handleKeyPress = (
+    event: React.KeyboardEvent<HTMLDivElement>,
+    key: string
+  ) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleSelectOption(key);
+    }
+  };
+
   const handleContinue = () => {
+    if (!selectedOption) {
+      setErrorMessage('Please select an option before continuing.');
+      return;
+    }
     if (selectedOption === 'car') {
       navigate('/car');
     } else if (selectedOption === 'mortgage') {
       navigate('/mortgage');
     } else {
-      setErrorMessage('Functionality is unavailable for this option.');
+      setErrorMessage(
+        `Sorry, the '${
+          options.find((o) => o.key === selectedOption)?.label || 'selected'
+        }' option is not available yet.`
+      );
     }
   };
 
   return (
-    <div className='selection-container'>
+    <div className='selection-page'>
       <div className='selection-header'>
-        {/* BACK button -> go to welcome page */}
-        <h2>Please select your finance help plan</h2>
+        <h2>Choose Your Savings Goal</h2>
       </div>
 
-      {/* Options list */}
-      <div className='options-list'>
+      <div className='options-grid'>
         {options.map((option) => (
           <div
             key={option.key}
-            className={`option-item ${
+            className={`option-card ${
               selectedOption === option.key ? 'selected' : ''
             }`}
             onClick={() => handleSelectOption(option.key)}
+            onKeyPress={(e) => handleKeyPress(e, option.key)}
+            role='button'
+            tabIndex={0}
           >
-            <i className={option.iconClass} aria-hidden='true' />
-            <span>{option.label}</span>
+            <div className='card-icon'>
+              <i className={option.iconClass} aria-hidden='true' />
+            </div>
+            <div className='card-content'>
+              <h3 className='card-title'>{option.label}</h3>
+              <p className='card-description'>{option.description}</p>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Error message if user picks a non-implemented option and hits continue */}
-      {errorMessage && <div className='error-message'>{errorMessage}</div>}
+      {errorMessage && (
+        <div className='error-message-container'>
+          <p className='error-message'>{errorMessage}</p>
+        </div>
+      )}
 
-      {/* Continue / back buttons */}
       <div className='selection-footer'>
-        <button className='back-button' onClick={() => navigate('/')}>
+        <button
+          className='back-button'
+          onClick={() => navigate('/get-started')} // Navigate to /get-started
+        >
           Back
         </button>
-        <button className='continue-button' onClick={handleContinue}>
+        <button
+          className='continue-button'
+          onClick={handleContinue}
+          disabled={!selectedOption}
+        >
           Continue
         </button>
       </div>
