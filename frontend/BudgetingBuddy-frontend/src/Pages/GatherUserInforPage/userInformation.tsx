@@ -142,7 +142,7 @@ const UserInfo = () => {
           onFormSubmit={handleFormSubmit}
           options={frequencyVal}
           className='dynamic-form step-0-form'
-          dontClearFields={true}
+          dontClearFields={currentIndex === 0}
           buttonName={currentButtonName}
         />
       );
@@ -167,7 +167,7 @@ const UserInfo = () => {
             onFormSubmit={handleFormSubmit}
             options={frequencyVal}
             className='dynamic-form'
-            dontClearFields={currentIndex === 1}
+            dontClearFields={false}
             buttonName={currentButtonName}
           />
           <div className='info-container'>

@@ -11,6 +11,12 @@ const headers = {
   "Content-Type": "application/json",
 };
 
+interface data {
+  depositAmount: number;
+  depositPercentage: number;
+  savingDuration: number;
+}
+
 function MortgageCalculatorPage() {
   const moneyInfo = UseUserMoneyInfo();
   const { setBudget, removeBudget, userMoneyInfo } = moneyInfo;
@@ -24,24 +30,27 @@ function MortgageCalculatorPage() {
     (budget) => budget.name === "mortgagePayment"
   );
 
-  useEffect(() => {
-    console.log(userMoneyInfo.budgets);
-  }, [userMoneyInfo]);
-
   const reqBody = {
     housePrice: parseFloat(mortgageValues.housePrice) || 0,
     availableBudgetingAmount:
       parseFloat(mortgageValues.savingMonthlyAmount) || 0,
   };
-  const { fetchData, data } = UseGenericApiCall(URL, method, headers, reqBody);
+  const { fetchData, data } = UseGenericApiCall<data>(
+    URL,
+    method,
+    headers,
+    reqBody
+  );
 
   useEffect(() => {
-    setBudget(
-      Number(mortgageValues.savingMonthlyAmount),
-      "mortgagePayment",
-      "monthly",
-      data
-    );
+    if (data) {
+      setBudget(
+        Number(mortgageValues.savingMonthlyAmount),
+        "mortgagePayment",
+        "monthly",
+        data
+      );
+    }
   }, [data]);
 
   const setMortgageVals = (value: string, stateProperty: string) => {
@@ -143,7 +152,10 @@ function MortgageCalculatorPage() {
                       </td>
                       <td>{payment.savingDuration || "N/A"}</td>
                       <td>
-                        <button onClick={() => removeBudget(payment.id)} className="remove-button">
+                        <button
+                          onClick={() => removeBudget(payment.id)}
+                          className="remove-button"
+                        >
                           X
                         </button>
                       </td>
