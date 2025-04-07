@@ -65,7 +65,7 @@ function MortgageCalculatorPage() {
     },
     {
       stepTitle: "Monthly Budget",
-      stepInfo: "How much can you save monthly towards your mortgage?",
+      stepInfo: "How much can you afford to save monthly towards your mortgage deposit?",
       inputFields: [
         {
           label: "Monthly Savings (£)",
