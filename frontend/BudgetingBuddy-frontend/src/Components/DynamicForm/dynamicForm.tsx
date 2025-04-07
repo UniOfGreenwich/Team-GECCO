@@ -12,12 +12,11 @@ interface DynamicFormProps {
   onFormSubmit: (formData: Record<string, string>) => void;
   options?: string[];
   className?: string;
-  dontClearFields?: boolean;
-  buttonName: string;
+  dontClearFields?: boolean
 }
 
 const DynamicForm = (Props: DynamicFormProps) => {
-  const { formValues, onFormSubmit, options, className, dontClearFields, buttonName } = Props;
+  const { formValues, onFormSubmit, options, className, dontClearFields } = Props;
   const [formInputtedValues, setFormInputtedValues] = useState<
     Record<string, string>
   >({});
@@ -64,7 +63,7 @@ const DynamicForm = (Props: DynamicFormProps) => {
           required={true} 
         />
       ))}
-      <button type="submit">{buttonName}</button>
+      <button type="submit">Add</button>
     </form>
   );
 };
