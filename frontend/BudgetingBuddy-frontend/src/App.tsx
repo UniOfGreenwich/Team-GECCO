@@ -9,29 +9,4 @@ import Help from './Pages/HelpPage/help';
 import Privacy from './Pages/PrivacyPage/privacy';
 import SignIn from './Pages/SignInPage/signin';
 import Dashboard from './Pages/DashboardPage/dashboard';
-import MortgageCalculatorPage from './Pages/MortageCalculator/mortgageCalculatorPage';
-import './App.css';
 
-function App() {
-  return (
-    <UserInfoContextTypeProvider>
-    <UserMoneyInfoProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<WelcomeComponent />} />
-          <Route path='/get-started' element={<UserInfo />} />
-          <Route path='/about' element={<AboutUs />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/help' element={<Help />} />
-          <Route path='/privacy' element={<Privacy />} />
-          <Route path='/signin' element={<SignIn />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/mortgage-calc' element={<MortgageCalculatorPage/>} />
-        </Routes>
-      </BrowserRouter>
-    </UserMoneyInfoProvider>
-    </UserInfoContextTypeProvider>
-  );
-}
-
-export default App;
