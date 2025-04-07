@@ -5,17 +5,37 @@ import frequencyVal from "../../assets/frequencyArr";
 import { UseUserMoneyInfo } from "../../hooks/UseUserMoneyInfo";
 import { UseUserInfo } from "../../hooks/UseUserInfo";
 import { Frequency } from "../../types/UserMoneyInfoContextTypes";
+import { useNavigate } from "react-router-dom";
+
 import "./userinfo.scss";
 
+const buttonNameInfo = {
+  step1: "register",
+  step2: "add"
+}
 
-const formFieldsMap: Record<
+const steps = 3;
+
+const UserInfo = () => {
+  const moneyContext = UseUserMoneyInfo();
+  const { setIncome, setExpenses, removeIncome, removeExpense,userMoneyInfo } =
+    moneyContext;
+  const userContext = UseUserInfo();
+  const { setEmail, setName, userInfo, setPassword } = userContext;
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const navigate = useNavigate();
+  const handleProceedToCalculators = () => {
+    navigate('/selection');
+  };
+
+  const formFieldsMap: Record<
   number,
-  Array<{ label: string; type: string; UniqueId: string }>
+  Array<{ label: string; type: string; UniqueId: string, value?: string }>
 > = {
   0: [
-    { label: "Name", type: "text", UniqueId: "name" },
-    { label: "Email", type: "email", UniqueId: "email" },
-    { label: "password", type: "password", UniqueId: "password" },
+    { label: "Name", type: "text", UniqueId: "name", value: userInfo.name },
+    { label: "Email", type: "email", UniqueId: "email", value: userInfo.email },
+    { label: "password", type: "password", UniqueId: "password", value: userInfo.password},
   ],
   1: [
     { label: "Income Amount", type: "number", UniqueId: "incomeAmount" },
@@ -37,21 +57,6 @@ const formFieldsMap: Record<
     { label: "Frequency", type: "select", UniqueId: "expensePeriod" },
   ],
 };
-
-const buttonNameInfo = {
-  step1: "register",
-  step2: "add"
-}
-
-const steps = 3;
-
-const UserInfo = () => {
-  const moneyContext = UseUserMoneyInfo();
-  const { setIncome, setExpenses, removeIncome, removeExpense,userMoneyInfo } =
-    moneyContext;
-  const userContext = UseUserInfo();
-  const { setEmail, setName, userInfo, setPassword } = userContext;
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const canProceedToNextStep = (): boolean => {
     switch (currentIndex) {
@@ -122,7 +127,7 @@ const UserInfo = () => {
         onFormSubmit={handleFormSubmit}
         options={frequencyVal}
         className="dynamic-form"
-        dontClearFields={currentIndex === 0}
+        dontClearFields={false}
         buttonName={currentIndex === 0 ? buttonNameInfo.step1 : buttonNameInfo.step2}
       />
       {currentIndex < steps - 1 && (
@@ -130,6 +135,13 @@ const UserInfo = () => {
           Next Step
         </button>
       )}
+      {
+        currentIndex === steps - 1 && (
+          <button onClick={handleProceedToCalculators}>
+            proceed to calculators
+          </button>
+        )
+      }
       {currentIndex === 1 ? (
         <div className="info-container">
           <h3>Income Information</h3>
