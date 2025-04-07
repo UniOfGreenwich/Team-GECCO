@@ -12,6 +12,7 @@ import Dashboard from './Pages/DashboardPage/dashboard';
 import Selection from './Pages/SelectionPage/selection';
 import Car from './Pages/CarFinancePage/car';
 import Mortgage from './Pages/MortgagePage/mortgage';
+import MortgageCalculatorPage from './Pages/MortgageCalculator/mortgageCalculator';
 import './App.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path='/car' element={<Car />} />
             <Route path='/selection' element={<Selection />} />
             <Route path='/mortgage' element={<Mortgage />} />
+            <Route path='/mortgage-page' element={<MortgageCalculatorPage/>} />
           </Routes>
         </BrowserRouter>
       </UserMoneyInfoProvider>
