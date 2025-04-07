@@ -87,7 +87,7 @@ const Selection: React.FC = () => {
       return;
     }
     if (selectedOption === 'car') {
-      navigate('/car');
+      navigate('/car-finance-page');
     } else if (selectedOption === 'mortgage') {
       navigate('/mortgage-page');
     } else {
@@ -137,7 +137,7 @@ const Selection: React.FC = () => {
       <div className='selection-footer'>
         <button
           className='back-button'
-          onClick={() => navigate('/get-started')} // Navigate to /get-started
+          onClick={() => navigate(-1)}
         >
           Back
         </button>
