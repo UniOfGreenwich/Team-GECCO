@@ -5,6 +5,7 @@ interface FormField {
   label: string;
   type: string;
   UniqueId: string;
+  value?: string
 }
 
 interface DynamicFormProps {
@@ -58,7 +59,7 @@ const DynamicForm = (Props: DynamicFormProps) => {
           key={input.UniqueId}
           label={input.label}
           type={input.type}
-          value={formInputtedValues[input.UniqueId] || ""}
+          value={input.value || ""}
           onChange={(value) => handleChange(value, input.UniqueId)}
           options={options}
           required={true} 
