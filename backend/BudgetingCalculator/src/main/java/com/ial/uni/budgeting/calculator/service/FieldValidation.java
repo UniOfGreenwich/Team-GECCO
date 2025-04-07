@@ -21,15 +21,22 @@ public class FieldValidation {
     }
 
     public static void validateCarFinanceRequiredFields(BudgetingUserRequest request) throws BudgetingException {
-        validateAlwaysRequiredFields(request);
         if(request.getCarSellingPrice() == null || request.getCarSellingPrice() <= 0) {
             throw new BudgetingException("Car selling price must be a valid positive number.", ErrorCode.CF_001);
         } else if (request.getCarDeposit() == null || request.getCarDeposit() < 0) {
             throw new BudgetingException("Car deposit must be bigger than 0.", ErrorCode.CF_002);
-        } else if (request.getApr() == null || request.getApr() < 0 || request.getApr() > 100) {
+        } else if (request.getCarApr() == null || request.getCarTerm() < 0 || request.getCarApr() > 100) {
             throw new BudgetingException("APR must be between 0 and 100, and not empty.", ErrorCode.CF_003);
-        } else if (request.getTerm() <= 0) {
+        } else if (request.getCarTerm() <= 0) {
             throw new BudgetingException("Term must be a valid positive number.", ErrorCode.CF_004);
+        }
+    }
+
+    public static void validateHolidayRequiredFields(BudgetingUserRequest request) throws BudgetingException {
+        if (request.getHolidayPriceAmount() == null || request.getHolidayPriceAmount() <= 0) {
+            throw new BudgetingException("Holiday price amount must be a valid positive number.", ErrorCode.HOL_001);
+        } else if (request.getHolidaySavingDuration() <= 0) {
+            throw new BudgetingException("Holiday saving duration must be a valid positive number.", ErrorCode.HOL_002);
         }
     }
 

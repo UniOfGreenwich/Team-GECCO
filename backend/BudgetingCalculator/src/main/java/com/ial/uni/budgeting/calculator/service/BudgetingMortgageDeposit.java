@@ -4,7 +4,7 @@ import com.ial.uni.budgeting.calculator.model.BudgetingUserRequest;
 import com.ial.uni.budgeting.calculator.model.response.BudgetingUserMortgageResponse;
 import org.springframework.stereotype.Service;
 
-import static com.ial.uni.budgeting.calculator.util.FinanceUtil.truncateDownToZeroDecimals;
+import static com.ial.uni.budgeting.calculator.util.FinanceUtil.truncateUpToZeroDecimals;
 
 @Service
 public class BudgetingMortgageDeposit {
@@ -43,7 +43,7 @@ public class BudgetingMortgageDeposit {
     }
 
     private void savingDuration(double depositAmount, double savingMonthlyAmount, BudgetingUserMortgageResponse response) {
-        double savingDuration = truncateDownToZeroDecimals(depositAmount / savingMonthlyAmount);
+        double savingDuration = truncateUpToZeroDecimals(depositAmount / savingMonthlyAmount);
         response.setSavingDuration(savingDuration);
         response.setMonthlyMortgageSaving(savingMonthlyAmount);
     }

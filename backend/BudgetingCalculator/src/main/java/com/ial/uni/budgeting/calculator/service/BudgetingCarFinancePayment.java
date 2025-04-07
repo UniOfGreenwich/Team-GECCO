@@ -14,8 +14,8 @@ public class BudgetingCarFinancePayment {
         BudgetingUserCarFinanceResponse response = new BudgetingUserCarFinanceResponse();
 
         double loanAmount = request.getCarSellingPrice() - request.getCarDeposit();
-        double monthlyInterestRate = request.getApr() / 100 / 12;
-        double term = request.getTerm();
+        double monthlyInterestRate = request.getCarApr() / 100 / 12;
+        double term = request.getCarTerm();
 
         double carMonthlyPayment = calculateMonthlyPayment(monthlyInterestRate, loanAmount, term);
 

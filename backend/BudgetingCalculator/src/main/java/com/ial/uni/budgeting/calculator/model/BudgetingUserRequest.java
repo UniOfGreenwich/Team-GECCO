@@ -18,8 +18,14 @@ public class BudgetingUserRequest {
     //hire-purchase car finance fields
     private Double carSellingPrice;
     private Double carDeposit;
-    private Double apr;
-    private int term;
+    private Double carApr;
+    private int carTerm;
+
+    //holiday amount fields
+    private Double holidayPriceAmount;
+    private Double holidayDepositAmount;
+    private int holidaySavingDuration;
+    private Double holidaySpendingMoney;
 
 }
 

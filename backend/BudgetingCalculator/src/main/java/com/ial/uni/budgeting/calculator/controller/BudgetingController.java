@@ -2,8 +2,10 @@ package com.ial.uni.budgeting.calculator.controller;
 
 import com.ial.uni.budgeting.calculator.model.BudgetingUserRequest;
 import com.ial.uni.budgeting.calculator.model.response.BudgetingUserCarFinanceResponse;
+import com.ial.uni.budgeting.calculator.model.response.BudgetingUserHolidayResponse;
 import com.ial.uni.budgeting.calculator.model.response.BudgetingUserMortgageResponse;
 import com.ial.uni.budgeting.calculator.service.BudgetingCarFinancePayment;
+import com.ial.uni.budgeting.calculator.service.BudgetingHolidayAmount;
 import com.ial.uni.budgeting.calculator.service.BudgetingMortgageDeposit;
 import com.ial.uni.budgeting.calculator.service.FieldValidation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class BudgetingController {
     @Autowired BudgetingMortgageDeposit budgetingMortgageDeposit;
 
     @Autowired BudgetingCarFinancePayment budgetingCarFinancePayment;
+
+    @Autowired BudgetingHolidayAmount budgetingHolidayAmount;
 
 
 
@@ -39,6 +43,16 @@ public class BudgetingController {
         FieldValidation.validateCarFinanceRequiredFields(budgetingUserRequest);
 
         BudgetingUserCarFinanceResponse response = budgetingCarFinancePayment.calculateCarFinancePayment(budgetingUserRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+
+    @PostMapping(value = "/calculateHolidayBudget")
+    public ResponseEntity<BudgetingUserHolidayResponse> calculateHolidayBudget(@RequestBody BudgetingUserRequest budgetingUserRequest) {
+
+        FieldValidation.validateHolidayRequiredFields(budgetingUserRequest);
+
+        BudgetingUserHolidayResponse response = budgetingHolidayAmount.calculateHolidayBudget(budgetingUserRequest);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

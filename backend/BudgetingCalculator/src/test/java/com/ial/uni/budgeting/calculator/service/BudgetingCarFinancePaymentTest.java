@@ -25,8 +25,8 @@ class BudgetingCarFinancePaymentTest {
         BudgetingUserRequest request = new BudgetingUserRequest();
         request.setCarSellingPrice(30000.0);
         request.setCarDeposit(5000.0);
-        request.setApr(5.0);
-        request.setTerm(60);
+        request.setCarApr(5.0);
+        request.setCarTerm(60);
 
         BudgetingUserCarFinanceResponse response = service.calculateCarFinancePayment(request);
 
