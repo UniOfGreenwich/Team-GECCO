@@ -18,7 +18,7 @@ const WelcomeComponent = () => {
         <p>Manage your finances with ease</p>
 
         <div className='button-group'>
-          <button onClick={() => navigate('/selection')}>
+          <button onClick={() => navigate('/get-started')}>
             Start Your New Journey
           </button>
           <button onClick={() => navigate('/signin')}>
