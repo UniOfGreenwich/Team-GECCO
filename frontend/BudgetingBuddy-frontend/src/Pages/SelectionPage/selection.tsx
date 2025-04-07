@@ -89,7 +89,7 @@ const Selection: React.FC = () => {
     if (selectedOption === 'car') {
       navigate('/car');
     } else if (selectedOption === 'mortgage') {
-      navigate('/mortgage');
+      navigate('/mortgage-page');
     } else {
       setErrorMessage(
         `Sorry, the '${
