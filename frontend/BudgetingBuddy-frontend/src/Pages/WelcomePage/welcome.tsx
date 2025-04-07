@@ -7,37 +7,39 @@ const WelcomeComponent = () => {
 
   return (
     <div className='welcome-page'>
-      {/* Header with the logo */}
       <header className='welcome-header'>
         <img src={logo} alt='BudgetingBuddy Logo' className='header-logo' />
       </header>
 
-      {/* Main content: Title, subtitle, and buttons */}
       <main className='welcome-main'>
         <div className='welcome-content-card'>
           <h1>Welcome to BudgetingBuddy</h1>
           <p>Manage your finances with ease</p>
 
           <div className='button-group'>
-            {/* Use button-primary for the first button */}
             <button
-              className='button-primary' // <-- Keep this class
+              className='button-primary'
               onClick={() => navigate('/get-started')}
             >
               Start Your New Journey
             </button>
-            {/* Use button-primary for the second button as well */}
             <button
-              className='button-primary' // <-- CHANGE this class to primary
+              className='button-primary'
               onClick={() => navigate('/signin')}
             >
               Sign In To View Existing
+            </button>
+            {/* --- Add New Button Here --- */}
+            <button
+              className='button-secondary'
+              onClick={() => navigate('/Financial-quiz')}
+            >
+              Test Your Financial Knowledge
             </button>
           </div>
         </div>
       </main>
 
-      {/* Footer with links */}
       <footer className='welcome-footer'>
         <ul>
           <li>
