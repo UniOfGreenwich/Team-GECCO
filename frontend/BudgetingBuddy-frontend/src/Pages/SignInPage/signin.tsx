@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './signin.scss';
 
 const SignIn: React.FC = () => {
@@ -10,41 +10,72 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError('');
 
-    // Simple credential check: "admin123" / "admin123"
     if (username === 'admin123' && password === 'admin123') {
-      // Redirect to dashboard
       navigate('/dashboard');
     } else {
-      // Show an error message
-      setError('Invalid credentials. Please try again.');
+      setError('Invalid username or password. Please try again.');
     }
   };
 
   return (
-    <div className='signin-container'>
-      <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='Username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+    <div className='signin-page-container'>
+      <div className='signin-card'>
+        <button className='back-button' onClick={() => navigate('/')}>
+          ← Back to Welcome
+        </button>
 
-        <input
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <h2 className='signin-title'>Budgeting Buddy Sign In</h2>
 
-        {error && <p className='error-message'>{error}</p>}
+        <form onSubmit={handleSubmit} className='signin-form' noValidate>
+          <div className='form-group'>
+            <label htmlFor='username'>Username</label>
+            <input
+              id='username'
+              type='text'
+              placeholder='e.g., admin123'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              aria-required='true'
+              aria-invalid={!!error}
+              aria-describedby={error ? 'signin-error' : undefined}
+            />
+          </div>
 
-        <button type='submit'>Sign In</button>
-      </form>
+          <div className='form-group'>
+            <label htmlFor='password'>Password</label>
+            <input
+              id='password'
+              type='password'
+              placeholder='Enter your password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              aria-required='true'
+              aria-invalid={!!error}
+              aria-describedby={error ? 'signin-error' : undefined}
+            />
+          </div>
+
+          {error && (
+            <p id='signin-error' className='error-message' role='alert'>
+              {error}
+            </p>
+          )}
+
+          <button type='submit' className='signin-button'>
+            Sign In
+          </button>
+
+          <div className='signin-links'>
+            <Link to='/get-started' className='signup-link-button'>
+              Don't have an account? Sign Up!
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
