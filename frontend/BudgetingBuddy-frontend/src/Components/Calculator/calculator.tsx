@@ -1,5 +1,6 @@
 import StandardInput from "../Standard-input/standardInput";
 import Stepper from "../Stepper/stepper";
+import './calculator.scss'
 
 
 interface InputFieldConfig {
