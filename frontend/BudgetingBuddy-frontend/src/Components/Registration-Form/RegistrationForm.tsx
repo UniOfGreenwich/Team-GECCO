@@ -22,7 +22,6 @@ function RegistrationForm() {
         placeholder="Enter your username"
         value={username}
         onChange={setUserName}
-        required={true}
       />
       <StandardInput
         type="email"
@@ -30,7 +29,6 @@ function RegistrationForm() {
         placeholder="Enter your email"
         value={email}
         onChange={setEmail}
-        required={true}
       />
 
       <StandardInput
@@ -39,7 +37,6 @@ function RegistrationForm() {
         placeholder="Enter your password"
         value={password}
         onChange={setPassword}
-        required={true}
       />
 
       <button type="submit">Register</button>

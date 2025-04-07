@@ -7,7 +7,6 @@ import { UseUserInfo } from "../../hooks/UseUserInfo";
 import { Frequency } from "../../types/UserMoneyInfoContextTypes";
 import "./userinfo.scss";
 
-
 const formFieldsMap: Record<
   number,
   Array<{ label: string; type: string; UniqueId: string }>
@@ -15,7 +14,6 @@ const formFieldsMap: Record<
   0: [
     { label: "Name", type: "text", UniqueId: "name" },
     { label: "Email", type: "email", UniqueId: "email" },
-    { label: "password", type: "password", UniqueId: "password" },
   ],
   1: [
     { label: "Income Amount", type: "number", UniqueId: "incomeAmount" },
@@ -38,19 +36,15 @@ const formFieldsMap: Record<
   ],
 };
 
-const buttonNameInfo = {
-  step1: "register",
-  step2: "add"
-}
-
 const steps = 3;
 
 const UserInfo = () => {
   const moneyContext = UseUserMoneyInfo();
-  const { setIncome, setExpenses, removeIncome, removeExpense,userMoneyInfo } =
+  const { setIncome, setExpenses, removeIncome, removeExpense, userMoneyInfo } =
     moneyContext;
+
   const userContext = UseUserInfo();
-  const { setEmail, setName, userInfo, setPassword } = userContext;
+  const { setEmail, setName, userInfo } = userContext;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const canProceedToNextStep = (): boolean => {
@@ -71,7 +65,6 @@ const UserInfo = () => {
       case 0:
         setEmail(stepData.email);
         setName(stepData.name);
-        setPassword(stepData.password)
         break;
       case 1:
         setIncome(
@@ -123,7 +116,6 @@ const UserInfo = () => {
         options={frequencyVal}
         className="dynamic-form"
         dontClearFields={currentIndex === 0}
-        buttonName={currentIndex === 0 ? buttonNameInfo.step1 : buttonNameInfo.step2}
       />
       {currentIndex < steps - 1 && (
         <button onClick={handleNextStep} disabled={isNextDisabled}>
@@ -157,7 +149,7 @@ const UserInfo = () => {
                         ✕
                       </button>
                     </td>
-                  </tr> 
+                  </tr>
                 ))}
               </tbody>
             </table>
