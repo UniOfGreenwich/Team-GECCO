@@ -2,6 +2,7 @@ import { createContext, useCallback, useEffect, useMemo, useState } from "react"
 
 import { ReactNode } from "react";
 import { UserInfoContextType, UserInfoStateType } from "../types/UserInfoContextTypes";
+import { loadFromSessionStorage, saveToSessionStorage } from "../utils/sessionStorage";
 
 interface UserInfoProviderType {
   children?: ReactNode;
@@ -11,15 +12,24 @@ const UserInformationContext = createContext<UserInfoContextType | undefined>(
   undefined
 );
 
+const KEY = 'UserInfo'
+
+const initialState = {
+  email: undefined,
+  name: undefined,
+  userName: undefined,
+  password: undefined,
+}
+
+
 export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
   children,
 }) => {
-  const [userInfo, setUserInfo] = useState<UserInfoStateType>({
-    email: undefined,
-    name: undefined,
-    userName: undefined,
-    password: undefined,
-  });
+  const [userInfo, setUserInfo] = useState<UserInfoStateType>(loadFromSessionStorage(KEY, initialState));
+
+  useEffect(() => {
+    saveToSessionStorage(KEY, userInfo)
+  }, [userInfo])
 
   const setEmail = useCallback(
     (email: string) => {

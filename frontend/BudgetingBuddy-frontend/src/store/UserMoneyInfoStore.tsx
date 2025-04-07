@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import {Frequency, UserMoneyInfoContextType, UserMoneyInfo} from '../types/UserMoneyInfoContextTypes'
+import { saveToSessionStorage, loadFromSessionStorage } from "../utils/sessionStorage";
 
 const STORAGE_KEY = "userMoneyInfo";
 
@@ -27,33 +28,13 @@ const initialState: UserMoneyInfo = {
   budgets: [],
 };
 
-const loadFromSessionStorage = (): UserMoneyInfo => {
-  try {
-    const storedData = sessionStorage.getItem(STORAGE_KEY);
-    if (storedData) {
-      return JSON.parse(storedData);
-    }
-  } catch (error) {
-    console.error('Error loading from session storage:', error);
-  }
-  return initialState;
-};
-
-const saveToSessionStorage = (state: UserMoneyInfo): void => {
-  try {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch (error) {
-    console.error('Error saving to session storage:', error);
-  }
-};
-
 export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
   children,
 }) => {
-  const [userMoneyInfo, setUserMoneyInfo] = useState<UserMoneyInfo>(loadFromSessionStorage());
+  const [userMoneyInfo, setUserMoneyInfo] = useState<UserMoneyInfo>(loadFromSessionStorage(STORAGE_KEY, initialState));
 
   useEffect(() => {
-    saveToSessionStorage(userMoneyInfo);
+    saveToSessionStorage(STORAGE_KEY, userMoneyInfo);
     console.log(`usermoney info updated and saved to session storage:`);
     console.log(userMoneyInfo);
   }, [userMoneyInfo]);
