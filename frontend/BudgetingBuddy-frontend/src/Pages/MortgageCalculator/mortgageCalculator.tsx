@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Calculator from "../../Components/Calculator/calculator";
 import UseGenericApiCall from "../../hooks/useGenericApiCall";
 import { UseUserMoneyInfo } from "../../hooks/UseUserMoneyInfo";
+import "./mortgageCalculator.scss";
 
 const URL = "http://localhost:8080/calculateMortgageBudget";
 const method = "POST";
@@ -19,9 +20,13 @@ function MortgageCalculatorPage() {
     savingMonthlyAmount: "",
   });
 
-//   const mortgageValArr = userMoneyInfo.budgets.filter(
-//     (budget) => budget.name === "mortgagePayment"
-//   );
+  const mortgagePayments = userMoneyInfo.budgets.filter(
+    (budget) => budget.name === "mortgagePayment"
+  );
+
+  useEffect(() => {
+    console.log(userMoneyInfo.budgets);
+  }, [userMoneyInfo]);
 
   const reqBody = {
     housePrice: parseFloat(mortgageValues.housePrice) || 0,
@@ -85,22 +90,78 @@ function MortgageCalculatorPage() {
   ];
   const steps = calcConfig.length + 1;
 
-//   const handleRestart = () => {
-//     setCurrentIndex(0);
-//     setMortgageValues({
-//       housePrice: "",
-//       savingMonthlyAmount: "",
-//     });
-//   };
+  const handleResetCalculator = () => {
+    setCurrentIndex(0);
+    setMortgageValues({
+      housePrice: "",
+      savingMonthlyAmount: "",
+    });
+  };
 
   return (
-    <div>
-      <Calculator
-        calcConfig={calcConfig}
-        steps={steps}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-      />
+    <div className="mortgage-calculator-page">
+      {currentIndex !== steps - 1 && (
+        <Calculator
+          calcConfig={calcConfig}
+          steps={steps}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
+      )}
+      {currentIndex === steps - 1 && (
+        <div className="mortgage-table-container">
+          <button className="back-button" onClick={handleResetCalculator}>
+            ← Back to Calculator
+          </button>
+          <h2>Your Mortgage Savings Plan</h2>
+
+          {mortgagePayments.length > 0 ? (
+            <div className="table-wrapper">
+              <table className="mortgage-table">
+                <thead>
+                  <tr>
+                    <th>Monthly Savings</th>
+                    <th>Deposit Amount</th>
+                    <th>Deposit Percentage</th>
+                    <th>Saving Duration (Months)</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {mortgagePayments.map((payment) => (
+                    <tr key={payment.id}>
+                      <td>£{payment.amount.toLocaleString()}</td>
+                      <td>
+                        {payment.depositAmount
+                          ? `£${payment.depositAmount.toLocaleString()}`
+                          : "N/A"}
+                      </td>
+                      <td>
+                        {payment.depositPercentage
+                          ? `${payment.depositPercentage}%`
+                          : "N/A"}
+                      </td>
+                      <td>{payment.savingDuration || "N/A"}</td>
+                      <td>
+                        <button onClick={() => removeBudget(payment.id)} className="remove-button">
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="no-data-message">
+              <p>
+                No mortgage payments found. Please submit your information using
+                the calculator.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
