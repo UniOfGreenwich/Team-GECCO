@@ -1,114 +1,360 @@
 @import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
 
+:root {
+  --color-primary-light: #60a5fa;
+  --color-primary-medium: #3b82f6;
+  --color-primary-dark: #1e40af;
+  --color-positive: #10b981;
+  --color-negative: #ef4444;
+  --color-text-light: #f3f4f6;
+  --color-text-muted-light: #cbd5e1;
+  --color-text-muted: #9ca3af;
+  --color-input-border-dark: #475569;
+  --color-background-page: #111827;
+  --color-background-secondary: #1f2937;
+  --color-background-card: rgba(30, 41, 59, 0.6);
+  --radius-card: 8px;
+  --radius-card-large: 12px;
+  --shadow-base: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-card-hover: 0 6px 15px rgba(0, 0, 0, 0.2);
+  --font-primary: 'Boldonse', sans-serif;
+  --font-secondary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  /* RGB Colors for Glow Effects */
+  --color-primary-medium-rgb: 59, 130, 246;
+  --color-primary-light-rgb: 96, 165, 250;
+  --color-text-light-rgb: 243, 244, 246;
+
+  /* Blue Glow Shadows */
+  --shadow-glow-blue: 0 0 8px rgba(var(--color-primary-medium-rgb), 0.5),
+    0 0 15px rgba(var(--color-primary-medium-rgb), 0.3);
+  --shadow-glow-blue-hover: 0 0 12px 3px
+      rgba(var(--color-primary-medium-rgb), 0.7),
+    0 0 25px 5px rgba(var(--color-primary-medium-rgb), 0.4);
+  --shadow-glow-blue-subtle: 0 0 8px rgba(var(--color-primary-light-rgb), 0.4);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUpFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes logoPopIn {
+    from {
+      opacity: 0.5;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Blue Pulse Animation */
+  @keyframes pulse-blue {
+    0%,
+    100% {
+      box-shadow: var(--shadow-base), var(--shadow-glow-blue);
+    }
+    50% {
+      box-shadow: var(--shadow-hover), var(--shadow-glow-blue-hover);
+    }
+  }
+}
+
 .welcome-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f9fafb; /* Light background */
-  font-family: 'Boldonse', sans-serif;
+  background-color: var(--color-background-page);
+  font-family: var(--font-secondary);
+  color: var(--color-text-light);
+  opacity: 0;
+  overflow-x: hidden;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: 0.1s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+  }
 }
 
-/* Header */
 .welcome-header {
-  background-color: #1a56db;
+  background-color: var(--color-background-secondary);
   padding: 1rem 0;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 
   .header-logo {
     height: 60px;
     cursor: default;
+    filter: brightness(1.1);
+    opacity: 0;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: logoPopIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards
+        0.3s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      opacity: 1;
+    }
   }
 }
 
-/* Main content */
 .welcome-main {
-  flex: 1; /* Take up remaining vertical space */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem;
+  padding: 3rem 1rem;
+
+  .welcome-content-card {
+    background-color: var(--color-background-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-card-large);
+    padding: clamp(2rem, 6vw, 3.5rem) clamp(1.5rem, 5vw, 2.5rem);
+    max-width: 600px;
+    width: 100%;
+    box-shadow: var(--shadow-card-hover);
+    box-sizing: border-box;
+  }
 
   h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-    color: #1a56db;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-family: var(--font-primary);
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-text-light);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: slideUpFadeIn 0.6s ease-out forwards 0.5s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      opacity: 1;
+    }
   }
 
   p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    color: #374151;
+    font-family: var(--font-secondary);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 2.5rem;
+    color: var(--color-text-muted-light);
+    max-width: 550px;
+    line-height: 1.7;
+    opacity: 0;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: slideUpFadeIn 0.6s ease-out forwards 0.7s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      opacity: 1;
+    }
   }
 
   .button-group {
     display: flex;
-    flex-wrap: wrap; /* Allow buttons to wrap if needed */
-    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    opacity: 0;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: slideUpFadeIn 0.6s ease-out forwards 0.9s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      opacity: 1;
+    }
 
     button {
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 2rem;
       font-size: 1rem;
-      border-radius: 6px;
+      font-weight: 600;
+      border-radius: var(--radius-card);
       border: none;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: filter 0.2s ease, transform 0.1s ease, box-shadow 0.3s ease,
+        background-color 0.2s ease, border-color 0.2s ease;
 
-      /* Primary Button */
-      &:first-child {
-        background-color: #3b82f6;
-        color: #ffffff;
+      &:disabled {
+        background-color: var(--color-text-muted) !important;
+        border-color: var(--color-text-muted) !important;
+        color: var(--color-background-secondary) !important;
+        cursor: not-allowed;
+        opacity: 0.5;
+        box-shadow: none !important;
+        filter: none !important;
+        animation: none !important;
+      }
 
-        &:hover {
-          background-color: #2563eb;
-          transform: translateY(-2px);
+      &:focus-visible {
+        outline-offset: 2px;
+      }
+
+      /* Primary Button (Blue, pulsing glow) */
+      &.button-primary {
+        background-color: var(--color-primary-medium);
+        color: var(--color-text-light);
+        box-shadow: var(--shadow-base), var(--shadow-glow-blue);
+
+        &:not(:disabled) {
+          @media (prefers-reduced-motion: no-preference) {
+            animation: pulse-blue 2.5s infinite 1s; /* Use blue pulse */
+          }
+        }
+
+        &:hover:not(:disabled) {
+          filter: brightness(115%);
+          transform: translateY(-3px) scale(1.03);
+          box-shadow: var(--shadow-hover), var(--shadow-glow-blue-hover); /* Enhanced blue glow */
+        }
+
+        &:active:not(:disabled) {
+          transform: translateY(0) scale(1);
+          filter: brightness(90%);
+          box-shadow: var(--shadow-base), var(--shadow-glow-blue); /* Reset glow */
+        }
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: var(--shadow-hover),
+            0 0 0 3px var(--color-background-page),
+            0 0 0 5px var(--color-primary-medium), var(--shadow-glow-blue-hover);
         }
       }
 
-      /* Secondary Button */
-      &:last-child {
+      /* Secondary Button (Blue outlined, subtle blue glow on hover/focus) */
+      &.button-secondary {
         background-color: transparent;
-        color: #3b82f6;
-        border: 2px solid #3b82f6;
+        color: var(--color-primary-light);
+        border: 2px solid var(--color-primary-light);
+        box-shadow: none;
 
-        &:hover {
-          background-color: rgba(59, 130, 246, 0.1);
+        &:hover:not(:disabled) {
+          background-color: rgba(var(--color-primary-light-rgb), 0.1);
+          border-color: var(--color-primary-light);
+          filter: brightness(100%);
           transform: translateY(-2px);
+          box-shadow: var(--shadow-glow-blue-subtle); /* Subtle blue glow */
         }
-      }
 
-      &:active {
-        transform: translateY(0);
+        &:active:not(:disabled) {
+          background-color: rgba(var(--color-primary-light-rgb), 0.15);
+          filter: brightness(95%);
+          transform: translateY(0);
+          box-shadow: none;
+        }
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 3px var(--color-background-page),
+            0 0 0 5px var(--color-primary-light), var(--shadow-glow-blue-subtle);
+          background-color: rgba(var(--color-primary-light-rgb), 0.1);
+        }
       }
     }
   }
 }
 
-/* Footer */
 .welcome-footer {
-  background-color: #1a56db;
+  background-color: var(--color-background-secondary);
   text-align: center;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  margin-top: auto;
 
   ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
 
-    li {
-      color: #ffffff;
+    li a {
+      font-family: var(--font-secondary);
+      color: var(--color-text-muted-light);
       cursor: pointer;
       font-size: 0.9rem;
-      transition: opacity 0.2s ease;
+      text-decoration: none;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+      opacity: 0;
+      padding: 0.2rem 0.4rem;
+      border-radius: var(--radius-card);
+
+      @media (prefers-reduced-motion: no-preference) {
+        animation: fadeIn 0.5s ease-out forwards 1.1s;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        opacity: 1;
+      }
 
       &:hover {
-        opacity: 0.8;
+        color: var(--color-text-light);
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
       }
+
+      &:focus-visible {
+        outline: none;
+        color: var(--color-text-light);
+        background-color: rgba(var(--color-text-light-rgb, 243, 244, 246), 0.1);
+        box-shadow: 0 0 0 2px
+          rgba(var(--color-text-light-rgb, 243, 244, 246), 0.5);
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .welcome-main .welcome-content-card {
+    padding: 2rem 1.5rem;
+  }
+  .welcome-main h1 {
+    font-size: 1.8rem;
+  }
+  .welcome-main p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  .welcome-main .button-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    gap: 1rem;
+    button {
+      width: 100%;
+      padding: 0.8rem 1.5rem;
+    }
+  }
+  .welcome-footer ul {
+    gap: 1rem;
+    li a {
+      font-size: 0.85rem;
     }
   }
 }
