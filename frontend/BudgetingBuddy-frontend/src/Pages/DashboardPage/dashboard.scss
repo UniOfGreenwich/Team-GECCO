@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+
+$primary-font: 'Boldonse', sans-serif;
+$secondary-font: sans-serif;
+$primary-color-dark: #1a56db;
+$primary-color-medium: #3b82f6;
+$text-color-light: #ffffff;
+$text-color-dark: #1f2937;
+$text-color-medium: #374151;
+$text-color-muted: #6b7280;
+$background-light: #f9fafb;
+$card-background: #ffffff;
+$card-border-radius: 8px;
+$card-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+$positive-color: #10b981;
+$negative-color: #ef4444;
+
+.dashboard-container {
+  background-color: $background-light;
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+.dashboard-header {
+  background-color: $primary-color-dark;
+  color: $text-color-light;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+
+  h1 {
+    font-family: $primary-font;
+    font-size: 2.25rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: normal;
+  }
+
+  p {
+    font-family: $secondary-font;
+    font-size: 1.1rem;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .back-button {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: $text-color-light;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-family: $secondary-font;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:active {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 600px) {
+      top: 1rem;
+      left: 1rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.dashboard-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+h2 {
+  font-family: $primary-font;
+  font-size: 1.75rem;
+  color: $primary-color-dark;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  text-align: center;
+}
+
+.summary-section {
+  margin-bottom: 3rem;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: $card-background;
+  border-radius: $card-border-radius;
+  padding: 1.5rem;
+  box-shadow: $card-shadow;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  h3 {
+    font-family: $secondary-font;
+    font-size: 0.9rem;
+    color: $text-color-muted;
+    margin: 0 0 0.75rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  p {
+    font-family: $secondary-font;
+    font-size: 1.75rem;
+    color: $text-color-dark;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  &.income-card p {
+    color: $positive-color;
+  }
+  &.expense-card p {
+    color: $negative-color;
+  }
+  &.budget-card p {
+    color: $primary-color-medium;
+  }
+
+  &.balance-card {
+    &.positive p {
+      color: $positive-color;
+    }
+    &.negative p {
+      color: $negative-color;
+    }
+  }
+}
+
+.details-section {
+  margin-bottom: 3rem;
+}
+
+.recent-activity-section {
+  background-color: $card-background;
+  border-radius: $card-border-radius;
+  padding: 1.5rem 2rem;
+  box-shadow: $card-shadow;
+
+  h2 {
+    text-align: left;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .activity-lists {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  h3 {
+    font-family: $secondary-font;
+    font-size: 1.1rem;
+    color: $text-color-medium;
+    margin: 0 0 1rem 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    font-family: $secondary-font;
+    font-size: 0.95rem;
+    color: $text-color-dark;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    span {
+      color: $text-color-muted;
+      font-size: 0.85rem;
+    }
+  }
+
+  p {
+    font-family: $secondary-font;
+    color: $text-color-muted;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem 0;
+  }
+}
+
+.null-value {
+  color: $text-color-muted;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.finance-tip-section {
+  background-color: lighten($primary-color-dark, 65%);
+  border: 1px solid lighten($primary-color-dark, 55%);
+  border-radius: $card-border-radius;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  text-align: center;
+
+  .tip-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h3 {
+    font-family: $secondary-font;
+    font-size: 1.1rem;
+    color: $primary-color-dark;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .refresh-tip-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: $primary-color-medium;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      color: $primary-color-dark;
+      transform: rotate(180deg);
+    }
+
+    &:active {
+      transform: rotate(360deg);
+    }
+  }
+
+  p {
+    font-family: $secondary-font;
+    font-size: 1rem;
+    color: $text-color-medium;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
