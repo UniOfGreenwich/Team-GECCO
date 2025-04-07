@@ -46,8 +46,8 @@ The application allows users to:
 
 ## 4. Data Flow Diagram
 
-![Data Flow Diagram](./finance-helper-frontend/src/assets/data-flow-diagram.png)
+![Data Flow Diagram](./frontend/BudgetingBuddy-frontend/src/assets/data-flow-diagram.png)
 
 ## 5. System Architecture Diagram
 
-![Architecture Diagram](./finance-helper-frontend/src/assets/architecture-diagram.png)
+![Architecture Diagram](./frontend/BudgetingBuddy-frontend/src/assets/architecture-diagram.png)
