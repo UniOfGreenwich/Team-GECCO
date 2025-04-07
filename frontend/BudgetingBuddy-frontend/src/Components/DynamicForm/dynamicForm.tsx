@@ -54,19 +54,19 @@ const DynamicForm = (Props: DynamicFormProps) => {
 
   return (
     <form onSubmit={handleSubmit} className={formClassName}>
-      {formValues.map((input: FormField) => (
-        <StandardInput
-          key={input.UniqueId}
-          label={input.label}
-          type={input.type}
-          value={input.value || ""}
-          onChange={(value) => handleChange(value, input.UniqueId)}
-          options={options}
-          required={true} 
-        />
-      ))}
-      <button type="submit">{buttonName}</button>
-    </form>
+    {formValues.map((input: FormField) => (
+      <StandardInput
+        key={input.UniqueId}
+        label={input.label}
+        type={input.type}
+        value={formInputtedValues[input.UniqueId] || input.value || ""}
+        onChange={(value) => handleChange(value, input.UniqueId)}
+        options={options}
+        required={true} 
+      />
+    ))}
+    <button type="submit">{buttonName}</button>
+  </form>
   );
 };
 
