@@ -1,7 +1,6 @@
 import StandardInput from "../Standard-input/standardInput";
 import Stepper from "../Stepper/stepper";
-import './calculator.scss'
-
+import "./calculator.scss";
 
 interface InputFieldConfig {
   label: string;
@@ -18,7 +17,7 @@ interface CalcConfiguration {
   stepInfo?: string;
   inputFields: InputFieldConfig[];
   onStepComplete?: (...args: any[]) => void;
-  buttonName?: string
+  buttonName?: string;
 }
 
 interface Props {
@@ -65,10 +64,7 @@ function Calculator(props: Props) {
             />
           </div>
         ))}
-        <button 
-          type="submit" 
-          className="calculator-submit-button"
-        >
+        <button type="submit" className="calculator-submit-button">
           {currentStep?.buttonName || "Next"}
         </button>
       </form>

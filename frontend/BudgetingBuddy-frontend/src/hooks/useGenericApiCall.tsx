@@ -4,7 +4,7 @@ const UseGenericApiCall = <T,>(
   url: string,
   method: string,
   headers: {} | null,
-  body?: any 
+  body?: any,
 ) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<T | null>(null);

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 
 :root {
   --color-primary-light: #60a5fa;
@@ -18,7 +18,7 @@
   --radius-card-large: 12px;
   --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-card-hover: 0 6px 15px rgba(0, 0, 0, 0.2);
-  --font-primary: 'Boldonse', sans-serif;
+  --font-primary: "Boldonse", sans-serif;
   --font-secondary: sans-serif;
 }
 
@@ -129,7 +129,9 @@
     padding: 0.4rem 0.8rem;
     cursor: pointer;
     border-radius: var(--radius-card);
-    transition: color 0.2s ease, background-color 0.2s ease;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
 
     &:hover {
       color: var(--color-text-muted-light);
@@ -175,8 +177,8 @@
     margin-bottom: 0.5rem;
   }
 
-  input[type='text'],
-  input[type='password'] {
+  input[type="text"],
+  input[type="password"] {
     width: 100%;
     padding: 0.8rem 1rem;
     font-size: 1rem;
@@ -186,11 +188,13 @@
     border: 1px solid var(--color-input-border-dark);
     border-radius: var(--radius-card);
     box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
     position: relative;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -1px;
       left: 0;
@@ -227,7 +231,7 @@
       opacity: 0.8;
     }
 
-    &[aria-invalid='true'] {
+    &[aria-invalid="true"] {
       border-color: var(--color-negative);
       &:focus {
         border-color: var(--color-negative);
@@ -274,7 +278,10 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: filter 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  transition:
+    filter 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
   width: 100%;
   margin-top: 0.5rem;
   box-shadow: var(--shadow-card);
@@ -320,7 +327,7 @@
     animation: none !important;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       width: 18px;
       height: 18px;
@@ -356,7 +363,10 @@
     text-align: center;
     text-decoration: none;
     font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease,
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.1s ease,
       border-color 0.2s ease;
     box-sizing: border-box;
 
@@ -390,8 +400,8 @@
     margin-bottom: 2rem;
   }
   .form-group {
-    input[type='text'],
-    input[type='password'] {
+    input[type="text"],
+    input[type="password"] {
       padding: 0.7rem 0.9rem;
       font-size: 0.95rem;
     }

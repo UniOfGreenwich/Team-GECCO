@@ -6,13 +6,22 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
-import { v4 as uuidv4 } from 'uuid';
-import {Frequency, UserMoneyInfoContextType, UserMoneyInfo} from '../types/UserMoneyInfoContextTypes'
-import { saveToSessionStorage, loadFromSessionStorage } from "../utils/sessionStorage";
+import { v4 as uuidv4 } from "uuid";
+import {
+  Frequency,
+  UserMoneyInfoContextType,
+  UserMoneyInfo,
+} from "../types/UserMoneyInfoContextTypes";
+import {
+  saveToSessionStorage,
+  loadFromSessionStorage,
+} from "../utils/sessionStorage";
 
 const STORAGE_KEY = "userMoneyInfo";
 
-const UserMoneyInfoContext = createContext<UserMoneyInfoContextType | undefined>(undefined);
+const UserMoneyInfoContext = createContext<
+  UserMoneyInfoContextType | undefined
+>(undefined);
 
 interface UserMoneyInfoProviderProps {
   children: ReactNode;
@@ -31,7 +40,9 @@ const initialState: UserMoneyInfo = {
 export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
   children,
 }) => {
-  const [userMoneyInfo, setUserMoneyInfo] = useState<UserMoneyInfo>(loadFromSessionStorage(STORAGE_KEY, initialState));
+  const [userMoneyInfo, setUserMoneyInfo] = useState<UserMoneyInfo>(
+    loadFromSessionStorage(STORAGE_KEY, initialState),
+  );
 
   useEffect(() => {
     saveToSessionStorage(STORAGE_KEY, userMoneyInfo);
@@ -57,7 +68,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
         };
       });
     },
-    [setUserMoneyInfo]
+    [setUserMoneyInfo],
   );
 
   // set expenses
@@ -66,7 +77,7 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
       amount: number,
       description: string,
       category: string,
-      period: Frequency
+      period: Frequency,
     ) => {
       setUserMoneyInfo((prev) => {
         return {
@@ -84,59 +95,65 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
         };
       });
     },
-    [setUserMoneyInfo]
+    [setUserMoneyInfo],
   );
 
   const setBudget = useCallback(
-      (
-        amount: number,
-        name: string,
-        period: Frequency,
-        additionalProps?: any
-      ) => {
-          setUserMoneyInfo((prev) => {
-              return {
-                  ...prev,
-                  budgets: [
-                      ...prev.budgets,
-                      {
-                          id: uuidv4(),
-                          amount: amount,
-                          name: name,
-                          period: period,
-                          ...additionalProps
-                      },
-                  ],
-              };
-          });
-      },
-      [setUserMoneyInfo]
-    );
-
+    (
+      amount: number,
+      name: string,
+      period: Frequency,
+      additionalProps?: any,
+    ) => {
+      setUserMoneyInfo((prev) => {
+        return {
+          ...prev,
+          budgets: [
+            ...prev.budgets,
+            {
+              id: uuidv4(),
+              amount: amount,
+              name: name,
+              period: period,
+              ...additionalProps,
+            },
+          ],
+        };
+      });
+    },
+    [setUserMoneyInfo],
+  );
 
   // Remove functions
-  const removeIncome = useCallback((id: string) => {
-    setUserMoneyInfo((prev) => ({
-      ...prev,
-      incomes: prev.incomes.filter(income => income.id !== id)
-    }));
-  }, [setUserMoneyInfo]);
+  const removeIncome = useCallback(
+    (id: string) => {
+      setUserMoneyInfo((prev) => ({
+        ...prev,
+        incomes: prev.incomes.filter((income) => income.id !== id),
+      }));
+    },
+    [setUserMoneyInfo],
+  );
 
-  const removeExpense = useCallback((id: string) => {
-    setUserMoneyInfo((prev) => ({
-      ...prev,
-      expenses: prev.expenses.filter(expense => expense.id !== id)
-    }));
-  }, [setUserMoneyInfo]);
+  const removeExpense = useCallback(
+    (id: string) => {
+      setUserMoneyInfo((prev) => ({
+        ...prev,
+        expenses: prev.expenses.filter((expense) => expense.id !== id),
+      }));
+    },
+    [setUserMoneyInfo],
+  );
 
-  const removeBudget = useCallback((id: string) => {
-    setUserMoneyInfo((prev) => ({
-      ...prev,
-      budgets: prev.budgets.filter(budget => budget.id !== id)
-    }));
-  }, [setUserMoneyInfo]);
-
-
+  const removeBudget = useCallback(
+    (id: string) => {
+      setUserMoneyInfo((prev) => ({
+        ...prev,
+        budgets: prev.budgets.filter((budget) => budget.id !== id),
+      }));
+    },
+    [setUserMoneyInfo],
+  );
 
   // helfer function that will noramilise anything to be a monthly charge instead of daily weekly or bi weekly
   const normalizeToMonthly = useCallback(
@@ -153,38 +170,46 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
 
       return amount;
     },
-    []
+    [],
   );
 
   // calculate remaning balance, total income, and total expenses, and total budgets
 
   const calculatedTotalIncome = useMemo(() => {
     return userMoneyInfo.incomes.reduce((total, income) => {
-      return total + normalizeToMonthly({
-        amount: Number(income.amount),
-        period: income.period
-      });
+      return (
+        total +
+        normalizeToMonthly({
+          amount: Number(income.amount),
+          period: income.period,
+        })
+      );
     }, 0);
   }, [userMoneyInfo.incomes, normalizeToMonthly]);
 
   const calculatedTotalExpenses = useMemo(() => {
     return userMoneyInfo.expenses.reduce((total, expense) => {
-      return total + normalizeToMonthly({
-        amount: Number(expense.amount),
-        period: expense.period
-      });
+      return (
+        total +
+        normalizeToMonthly({
+          amount: Number(expense.amount),
+          period: expense.period,
+        })
+      );
     }, 0);
   }, [userMoneyInfo.expenses, normalizeToMonthly]);
 
   const calculatedTotalBudgets = useMemo(() => {
     return userMoneyInfo.budgets.reduce((total, budget) => {
-      return total + normalizeToMonthly({
-        amount: Number(budget.amount),
-        period: budget.period
-      });
+      return (
+        total +
+        normalizeToMonthly({
+          amount: Number(budget.amount),
+          period: budget.period,
+        })
+      );
     }, 0);
   }, [userMoneyInfo.budgets, normalizeToMonthly]);
-
 
   useEffect(() => {
     setUserMoneyInfo((prev) => ({
@@ -192,7 +217,10 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
       totalIncome: calculatedTotalIncome,
       totalExpenses: calculatedTotalExpenses,
       totalBudgets: calculatedTotalBudgets,
-      remainingBalance: calculatedTotalIncome - calculatedTotalExpenses - calculatedTotalBudgets,
+      remainingBalance:
+        calculatedTotalIncome -
+        calculatedTotalExpenses -
+        calculatedTotalBudgets,
     }));
   }, [calculatedTotalIncome, calculatedTotalExpenses, calculatedTotalBudgets]);
 
@@ -222,8 +250,16 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
       removeExpense,
       removeBudget,
     }),
-    [userMoneyInfo, setIncome, setExpenses, resetBudgetDashboard, setBudget, 
-     removeIncome, removeExpense, removeBudget]
+    [
+      userMoneyInfo,
+      setIncome,
+      setExpenses,
+      resetBudgetDashboard,
+      setBudget,
+      removeIncome,
+      removeExpense,
+      removeBudget,
+    ],
   );
 
   return (
@@ -233,4 +269,4 @@ export const UserMoneyInfoProvider: React.FC<UserMoneyInfoProviderProps> = ({
   );
 };
 
-export {UserMoneyInfoContext}
+export { UserMoneyInfoContext };

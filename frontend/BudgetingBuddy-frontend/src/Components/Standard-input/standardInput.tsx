@@ -5,7 +5,7 @@ interface Props {
   onChange: (value: string) => void;
   type: string;
   options?: string[];
-  required: boolean
+  required: boolean;
 }
 
 const StandardInput = ({
@@ -15,7 +15,7 @@ const StandardInput = ({
   onChange,
   type,
   options,
-  required
+  required,
 }: Props) => {
   return (
     <div>

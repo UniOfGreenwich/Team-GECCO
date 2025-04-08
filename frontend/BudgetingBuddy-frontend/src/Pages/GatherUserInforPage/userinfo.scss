@@ -12,7 +12,7 @@
   --radius-card-large: 12px;
   --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-card-hover: 0 6px 15px rgba(0, 0, 0, 0.2);
-  --font-primary: 'Your Font Name', sans-serif;
+  --font-primary: "Your Font Name", sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -64,7 +64,7 @@
   gap: 2rem;
 
   h1 {
-    font-family: var(--font-primary, 'Boldonse', sans-serif);
+    font-family: var(--font-primary, "Boldonse", sans-serif);
     font-size: clamp(1.8rem, 5vw, 2.5rem);
     color: var(--color-text-light);
     text-align: center;
@@ -136,10 +136,10 @@
     font-weight: 500;
     font-size: 0.9rem;
   }
-  input[type='text'],
-  input[type='email'],
-  input[type='number'],
-  input[type='password'],
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
   select {
     width: 100%;
     padding: 0.8rem 1rem;
@@ -149,10 +149,12 @@
     color: var(--color-text-light);
     border-radius: var(--radius-card, 8px);
     font-size: 1rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
     position: relative;
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -1px;
       left: 0;
@@ -183,7 +185,7 @@
     }
   }
 
-  button[type='submit'] {
+  button[type="submit"] {
     width: 100%;
     background-color: var(--color-primary-medium);
     color: var(--color-text-light);
@@ -193,7 +195,10 @@
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: filter 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease,
+    transition:
+      filter 0.2s ease,
+      transform 0.1s ease,
+      box-shadow 0.2s ease,
       background-color 0.2s ease;
     margin-top: 1rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
@@ -221,7 +226,7 @@
       filter: none;
       pointer-events: none;
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 18px;
         height: 18px;
@@ -338,7 +343,10 @@
     cursor: pointer;
     padding: 0.4rem 0.6rem;
     border-radius: 50%;
-    transition: color 0.2s ease, background-color 0.2s ease, transform 0.1s ease;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      transform 0.1s ease;
     &:hover {
       color: var(--color-negative, #ef4444);
       background-color: rgba(239, 68, 68, 0.15);
@@ -443,7 +451,10 @@
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: filter 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease,
+    transition:
+      filter 0.2s ease,
+      transform 0.1s ease,
+      box-shadow 0.2s ease,
       background-color 0.2s ease;
     box-shadow: var(--shadow-card, 0 3px 6px rgba(0, 0, 0, 0.18));
     max-width: 90%;
@@ -559,7 +570,9 @@
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease,
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease,
     box-shadow 0.2s ease;
 
   &:hover {

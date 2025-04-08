@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import './stepper.scss';
-import tick from '../../assets/tick.svg';
+import { FC } from "react";
+import "./stepper.scss";
+import tick from "../../assets/tick.svg";
 
 interface Props {
   steps: number;
@@ -20,10 +20,10 @@ const Stepper: FC<Props> = ({
   for (let i: number = 0; i < steps; i++) {
     const containerStateClass =
       currentIndex === i
-        ? 'active'
+        ? "active"
         : i < currentIndex
-        ? 'completed'
-        : 'disabled';
+          ? "completed"
+          : "disabled";
 
     const isButtonDisabled = currentIndex < i;
 
@@ -34,7 +34,7 @@ const Stepper: FC<Props> = ({
         className={`step-button`}
       >
         {i < currentIndex ? (
-          <img className='tick-image' src={tick} alt='Completed' />
+          <img className="tick-image" src={tick} alt="Completed" />
         ) : (
           i + 1
         )}
@@ -45,14 +45,14 @@ const Stepper: FC<Props> = ({
       <div key={i} className={`step-container ${containerStateClass}`}>
         {button}
         {stepTitles && stepTitles[i] && (
-          <div className='step-title'>{stepTitles[i]}</div>
+          <div className="step-title">{stepTitles[i]}</div>
         )}
-        {i !== steps - 1 && <div className='connector'></div>}
-      </div>
+        {i !== steps - 1 && <div className="connector"></div>}
+      </div>,
     );
   }
 
-  return <div className='stepper'>{stepsArray}</div>;
+  return <div className="stepper">{stepsArray}</div>;
 };
 
 export default Stepper;

@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './AboutUs.scss';
+import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import "./AboutUs.scss";
 
 const AboutUs: React.FC = () => {
   const navigate = useNavigate(); // Initialize navigate function
@@ -10,8 +10,8 @@ const AboutUs: React.FC = () => {
   };
 
   return (
-    <div className='about-us-container'>
-      <button className='back-button' onClick={handleBackClick}>
+    <div className="about-us-container">
+      <button className="back-button" onClick={handleBackClick}>
         ← Back
       </button>
       <h2>About Us</h2>
