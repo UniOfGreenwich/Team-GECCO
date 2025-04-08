@@ -1,10 +1,13 @@
 package com.ial.uni.budgeting.calculator.service;
 
+import com.ial.uni.budgeting.calculator.exception.BudgetingException;
+import com.ial.uni.budgeting.calculator.exception.ErrorCode;
 import com.ial.uni.budgeting.calculator.model.BudgetingUserRequest;
 import com.ial.uni.budgeting.calculator.model.response.BudgetingUserHolidayResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BudgetingHolidayAmountTest {
 
@@ -89,4 +92,31 @@ class BudgetingHolidayAmountTest {
         assertEquals(250.0, response.getHolidayMonthlySaving());
     }
 
+    @Test
+    void testResponseWithInvalidHolidayPrice_Holiday() {
+        BudgetingUserRequest request = new BudgetingUserRequest();
+        request.setHolidayPriceAmount(null);
+        request.setHolidayDepositAmount(2000.0);
+        request.setHolidaySpendingMoney(2000.0);
+        request.setHolidaySavingDuration(12);
+
+        BudgetingException exception = assertThrows(BudgetingException.class, () -> FieldValidation.validateHolidayRequiredFields(request));
+
+        assertEquals(ErrorCode.HOL_001, exception.getErrorCode());
+        assertEquals("Holiday price amount must be a valid positive number, and not empty.", exception.getMessage());
+    }
+
+    @Test
+    void testResponseWithInvalidHolidayDuration_Holiday() {
+        BudgetingUserRequest request = new BudgetingUserRequest();
+        request.setHolidayPriceAmount(5000.0);
+        request.setHolidayDepositAmount(2000.0);
+        request.setHolidaySpendingMoney(2000.0);
+        request.setHolidaySavingDuration(0);
+
+        BudgetingException exception = assertThrows(BudgetingException.class, () -> FieldValidation.validateHolidayRequiredFields(request));
+
+        assertEquals(ErrorCode.HOL_002, exception.getErrorCode());
+        assertEquals("Holiday saving duration must be a valid positive number.", exception.getMessage());
+    }
 }
