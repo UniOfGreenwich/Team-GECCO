@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Calculator from '../../Components/Calculator/calculator';
 import UseGenericApiCall from '../../hooks/useGenericApiCall';
 import { UseUserMoneyInfo } from '../../hooks/UseUserMoneyInfo';
+import { useNavigate } from 'react-router-dom';
 import './mortgageCalculator.scss';
 
 const URL = 'http://localhost:8080/calculateMortgageBudget';
@@ -18,6 +19,7 @@ interface data {
 }
 
 function MortgageCalculatorPage() {
+  const navigate = useNavigate()
   const moneyInfo = UseUserMoneyInfo();
   const { setBudget, removeBudget, userMoneyInfo } = moneyInfo;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -163,6 +165,9 @@ function MortgageCalculatorPage() {
                   ))}
                 </tbody>
               </table>
+              <button onClick={() => navigate("/dashboard")}>
+                go to dashboard
+              </button>
             </div>
           ) : (
             <div className='no-data-message'>
