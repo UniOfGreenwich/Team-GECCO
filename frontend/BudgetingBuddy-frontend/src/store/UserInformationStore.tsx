@@ -1,35 +1,48 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import { ReactNode } from "react";
-import { UserInfoContextType, UserInfoStateType } from "../types/UserInfoContextTypes";
-import { loadFromSessionStorage, saveToSessionStorage } from "../utils/sessionStorage";
+import {
+  UserInfoContextType,
+  UserInfoStateType,
+} from "../types/UserInfoContextTypes";
+import {
+  loadFromSessionStorage,
+  saveToSessionStorage,
+} from "../utils/sessionStorage";
 
 interface UserInfoProviderType {
   children?: ReactNode;
 }
 
 const UserInformationContext = createContext<UserInfoContextType | undefined>(
-  undefined
+  undefined,
 );
 
-const KEY = 'UserInfo'
+const KEY = "UserInfo";
 
 const initialState = {
   email: undefined,
   name: undefined,
   userName: undefined,
   password: undefined,
-}
-
+};
 
 export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
   children,
 }) => {
-  const [userInfo, setUserInfo] = useState<UserInfoStateType>(loadFromSessionStorage(KEY, initialState));
+  const [userInfo, setUserInfo] = useState<UserInfoStateType>(
+    loadFromSessionStorage(KEY, initialState),
+  );
 
   useEffect(() => {
-    saveToSessionStorage(KEY, userInfo)
-  }, [userInfo])
+    saveToSessionStorage(KEY, userInfo);
+  }, [userInfo]);
 
   const setEmail = useCallback(
     (email: string) => {
@@ -40,7 +53,7 @@ export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
         };
       });
     },
-    [setUserInfo]
+    [setUserInfo],
   );
 
   const setName = useCallback(
@@ -52,30 +65,36 @@ export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
         };
       });
     },
-    [setUserInfo]
+    [setUserInfo],
   );
 
-  const setPassword = useCallback((password: string) => {
-    setUserInfo((prev) => {
-      return {
-        ...prev,
-        password: password,
-      };
-    });
-  }, [setUserInfo]);
-
-  const setUserName = useCallback((userName: string) => {
-    setUserInfo((prev) => {
+  const setPassword = useCallback(
+    (password: string) => {
+      setUserInfo((prev) => {
         return {
-            ...prev, 
-            userName: userName
-        }
-    })
-  }, [setUserInfo])
+          ...prev,
+          password: password,
+        };
+      });
+    },
+    [setUserInfo],
+  );
+
+  const setUserName = useCallback(
+    (userName: string) => {
+      setUserInfo((prev) => {
+        return {
+          ...prev,
+          userName: userName,
+        };
+      });
+    },
+    [setUserInfo],
+  );
 
   useEffect(() => {
-    console.log(userInfo)
-  },[userInfo]);
+    console.log(userInfo);
+  }, [userInfo]);
 
   const ctxValue = useMemo(() => {
     return {
@@ -94,5 +113,4 @@ export const UserInfoContextTypeProvider: React.FC<UserInfoProviderType> = ({
   );
 };
 
-
-export {UserInformationContext}
+export { UserInformationContext };

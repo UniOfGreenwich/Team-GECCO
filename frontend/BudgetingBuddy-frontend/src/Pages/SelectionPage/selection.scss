@@ -15,9 +15,9 @@
   --radius-card-large: 12px;
   --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-card-hover: 0 6px 15px rgba(0, 0, 0, 0.2);
-  --shadow-card-selected: 0 0 0 3px var(--color-primary-medium),
-    0 4px 12px rgba(0, 0, 0, 0.15);
-  --font-primary: 'Your Font Name', sans-serif;
+  --shadow-card-selected:
+    0 0 0 3px var(--color-primary-medium), 0 4px 12px rgba(0, 0, 0, 0.15);
+  --font-primary: "Your Font Name", sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -96,7 +96,7 @@
   margin-bottom: 0.5rem;
 
   h2 {
-    font-family: var(--font-primary, 'Boldonse', sans-serif);
+    font-family: var(--font-primary, "Boldonse", sans-serif);
     font-size: clamp(1.8rem, 5vw, 2.5rem);
     color: var(--color-text-light);
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
@@ -125,7 +125,10 @@
   text-align: center;
   min-height: 200px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
     background-color 0.2s ease;
   overflow: hidden;
 
@@ -245,8 +248,12 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: filter 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease,
-    background-color 0.2s ease, opacity 0.2s ease;
+  transition:
+    filter 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.2s ease;
   box-shadow: var(--shadow-card, 0 3px 6px rgba(0, 0, 0, 0.18));
   flex-grow: 1;
   max-width: 48%;
