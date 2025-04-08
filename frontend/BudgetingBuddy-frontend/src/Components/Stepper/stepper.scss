@@ -10,20 +10,19 @@ $transition-duration: 0.3s;
 .stepper {
   display: flex;
   flex-direction: row;
-  justify-content: center; 
-  align-items: center;    
-  gap: 4px;                
-  padding-bottom: 50px;    
-  width: 100%;             
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 50px;
+  width: 100%;
 
   .step-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 4px;          
-    flex-grow: 1;       
-    flex-basis: 0;      
-
+    gap: 4px;
+    flex-grow: 1;
+    flex-basis: 0;
 
     &:last-child {
       flex-grow: 0;
@@ -33,7 +32,7 @@ $transition-duration: 0.3s;
       height: 2px;
       flex-grow: 1;
       border-radius: 16px;
-      background: $connector-color; 
+      background: $connector-color;
     }
 
     .step-button {
@@ -48,14 +47,15 @@ $transition-duration: 0.3s;
       border: 2px solid $primary-color;
       background-color: #ffffff;
       color: $primary-color;
-      transition: background-color $transition-duration, border-color $transition-duration;
-      cursor: pointer; 
-
+      transition:
+        background-color $transition-duration,
+        border-color $transition-duration;
+      cursor: pointer;
 
       &.disabled {
         border: 2px solid $disabled-color;
         color: $disabled-color;
-        cursor: not-allowed; 
+        cursor: not-allowed;
         pointer-events: none;
       }
 
@@ -69,9 +69,8 @@ $transition-duration: 0.3s;
         border: 2px solid $primary-color;
         color: $primary-color;
 
-  
         &:hover {
-           background-color: $hover-background-color;
+          background-color: $hover-background-color;
         }
       }
 
@@ -87,5 +86,3 @@ $transition-duration: 0.3s;
     }
   }
 }
-
-

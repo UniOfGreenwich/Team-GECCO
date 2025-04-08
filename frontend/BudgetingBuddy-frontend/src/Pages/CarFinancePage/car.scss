@@ -1,22 +1,253 @@
-.car-container {
-  text-align: center;
-  margin-top: 2rem;
+.car-finance-page {
+  padding-top: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
 
-  h2 {
-    font-size: 1.5rem;
-    color: #1a56db;
-    margin-bottom: 1rem;
-  }
+.car-finance-table-container {
+  background-color: #ffffff;
+  color: #1f2937;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 100vw;
+  margin-bottom: 2rem;
+  position: relative;
 
   .back-button {
-    padding: 0.75rem 1rem;
-    background-color: #d1d5db;
-    border: none;
-    border-radius: 4px;
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+    background-color: #ffffff;
+    color: #1a56db;
+    border: 2px solid #1a56db;
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
     cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
 
     &:hover {
-      background-color: #9ca3af;
+      background-color: #1a56db;
+      color: #ffffff;
+    }
+
+    &:active {
+      background-color: #1647b3;
+      border-color: #1647b3;
+    }
+  }
+
+  h2 {
+    font-family: "Boldonse", sans-serif;
+    font-size: 1.9rem;
+    color: #1a56db;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .car-finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #1f2937;
+
+    th,
+    td {
+      padding: 0.85rem 1.1rem;
+      text-align: center;
+      border-bottom: 1px solid #dee2e6;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    thead th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+      color: #1f2937;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+      border-bottom: 2px solid #ced4da;
+    }
+
+    tbody tr {
+      transition: background-color 0.15s ease-in-out;
+
+      &:hover {
+        background-color: #e9ecef;
+      }
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    td:nth-child(1),
+    td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(4) {
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+
+    td.action-cell {
+      text-align: center;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      width: 1%;
+      white-space: nowrap;
+    }
+
+    .remove-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fee2e2;
+      border: 1px solid transparent;
+      color: #dc2626;
+      font-size: 1rem;
+      font-weight: bold;
+      line-height: 1;
+      padding: 0.3rem 0.5rem;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+      &:hover {
+        background-color: #ef4444;
+        color: #ffffff;
+        border-color: #dc2626;
+      }
+
+      &:active {
+        background-color: #dc2626;
+        color: #ffffff;
+        border-color: #b91c1c;
+      }
+    }
+  }
+
+  .no-data-message {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin-top: 1.5rem;
+    font-family: sans-serif;
+
+    p {
+      font-size: 1.05rem;
+      color: #4b5563;
+      margin: 0;
+      line-height: 1.6;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .car-finance-table-container {
+    padding: 1rem 1.5rem;
+    max-width: 95%;
+
+    .back-button {
+      top: 1rem;
+      left: 1.5rem;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      padding-top: 2rem;
+    }
+
+    .car-finance-table {
+      font-size: 0.95rem;
+      th,
+      td {
+        padding: 0.7rem 0.9rem;
+      }
+      .remove-button {
+        font-size: 0.9rem;
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    .no-data-message {
+      padding: 2rem 1rem;
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .car-finance-page {
+    gap: 1.5rem;
+  }
+
+  .car-finance-table-container {
+    padding: 1rem;
+
+    .back-button {
+      top: 0.8rem;
+      left: 1rem;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-width: 1px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      padding-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .table-wrapper {
+      margin-top: 1rem;
+    }
+
+    .car-finance-table {
+      font-size: 0.9rem;
+      th,
+      td {
+        padding: 0.6rem 0.7rem;
+      }
+      .remove-button {
+        font-size: 0.85rem;
+        width: 20px;
+        height: 20px;
+        padding: 0.2rem 0.3rem;
+      }
+    }
+
+    .no-data-message {
+      padding: 1.5rem 0.5rem;
+      p {
+        font-size: 0.95rem;
+      }
     }
   }
 }

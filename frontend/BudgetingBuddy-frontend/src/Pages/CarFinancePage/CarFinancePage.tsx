@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import Calculator from '../../Components/Calculator/calculator';
-import UseGenericApiCall from '../../hooks/useGenericApiCall';
-import { UseUserMoneyInfo } from '../../hooks/UseUserMoneyInfo';
-import { useNavigate } from 'react-router-dom';
-import './car.scss';
+import { useEffect, useState } from "react";
+import Calculator from "../../Components/Calculator/calculator";
+import UseGenericApiCall from "../../hooks/useGenericApiCall";
+import { UseUserMoneyInfo } from "../../hooks/UseUserMoneyInfo";
+import { useNavigate } from "react-router-dom";
+import "./car.scss";
 
-const URL = 'http://localhost:8080/calculateCarFinancePayment';
-const method = 'POST';
+const URL = "http://localhost:8080/calculateCarFinancePayment";
+const method = "POST";
 
 const headers = {
-  'Content-Type': 'application/json',
+  "Content-Type": "application/json",
 };
 
 interface data {
@@ -22,10 +22,10 @@ function CarFinancePage() {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [carValues, setCarValues] = useState<Record<string, string>>({
-    carSellingPrice: '',
-    carDeposit: '',
-    carApr: '',
-    carTerm: '',
+    carSellingPrice: "",
+    carDeposit: "",
+    carApr: "",
+    carTerm: "",
   });
   const setCarVals = (value: string, stateProperty: string) => {
     setCarValues((prev) => {
@@ -37,64 +37,64 @@ function CarFinancePage() {
   };
   const calcConfig = [
     {
-      stepTitle: 'Car Price',
-      stepInfo: 'Enter the selling price of the car you want to buy',
+      stepTitle: "Car Price",
+      stepInfo: "Enter the selling price of the car you want to buy",
       inputFields: [
         {
-          label: 'Car Price (£)',
-          placeholder: 'Enter car selling price',
+          label: "Car Price (£)",
+          placeholder: "Enter car selling price",
           value: carValues.carSellingPrice,
-          onChange: (value: string) => setCarVals(value, 'carSellingPrice'),
-          type: 'number',
+          onChange: (value: string) => setCarVals(value, "carSellingPrice"),
+          type: "number",
           required: true,
         },
       ],
     },
     {
-      stepTitle: 'Car Deposit',
-      stepInfo: 'How much deposit can you put down?',
+      stepTitle: "Car Deposit",
+      stepInfo: "How much deposit can you put down?",
       inputFields: [
         {
-          label: 'Deposit Amount (£)',
-          placeholder: 'Enter deposit amount',
+          label: "Deposit Amount (£)",
+          placeholder: "Enter deposit amount",
           value: carValues.carDeposit,
-          onChange: (value: string) => setCarVals(value, 'carDeposit'),
-          type: 'number',
+          onChange: (value: string) => setCarVals(value, "carDeposit"),
+          type: "number",
           required: true,
         },
       ],
     },
     {
-      stepTitle: 'Interest Rate',
-      stepInfo: 'What is the Annual Percentage Rate (APR) for the loan?',
+      stepTitle: "Interest Rate",
+      stepInfo: "What is the Annual Percentage Rate (APR) for the loan?",
       inputFields: [
         {
-          label: 'APR (%)',
-          placeholder: 'Enter APR',
+          label: "APR (%)",
+          placeholder: "Enter APR",
           value: carValues.carApr,
-          onChange: (value: string) => setCarVals(value, 'carApr'),
-          type: 'number',
+          onChange: (value: string) => setCarVals(value, "carApr"),
+          type: "number",
           required: true,
         },
       ],
     },
     {
-      stepTitle: 'Loan Term',
-      stepInfo: 'Select the length of your car loan in months',
+      stepTitle: "Loan Term",
+      stepInfo: "Select the length of your car loan in months",
       inputFields: [
         {
-          label: 'Term (Months)',
-          placeholder: 'Enter loan term',
+          label: "Term (Months)",
+          placeholder: "Enter loan term",
           value: carValues.carTerm,
-          onChange: (value: string) => setCarVals(value, 'carTerm'),
-          type: 'number',
+          onChange: (value: string) => setCarVals(value, "carTerm"),
+          type: "number",
           required: true,
         },
       ],
       onStepComplete: () => {
         fetchData();
       },
-      buttonName: 'Calculate',
+      buttonName: "Calculate",
     },
   ];
 
@@ -115,15 +115,15 @@ function CarFinancePage() {
   );
 
   useEffect(() => {
-    if (data && typeof data.monthlyCarFinancePayment === 'number') {
+    if (data && typeof data.monthlyCarFinancePayment === "number") {
       const budgetData = {
         ...data,
         ...reqBody,
       };
       setBudget(
         data.monthlyCarFinancePayment,
-        'carFinance',
-        'monthly',
+        "carFinance",
+        "monthly",
         budgetData
       );
     }
@@ -136,20 +136,23 @@ function CarFinancePage() {
   const handleResetCalculator = () => {
     setCurrentIndex(0);
     setCarValues({
-      carSellingPrice: '',
-      carDeposit: '',
-      carApr: '',
-      carTerm: '',
+      carSellingPrice: "",
+      carDeposit: "",
+      carApr: "",
+      carTerm: "",
     });
   };
 
   const carFinancePayments = userMoneyInfo.budgets.filter(
-    (budget) => budget.name === 'carFinance'
+    (budget) => budget.name === "carFinance"
   );
 
   const steps = calcConfig.length;
   return (
-    <div className='car-finance-page'>
+    <div className="car-finance-page">
+      <button className="back-button" onClick={() => navigate(-1)}>
+        Back
+      </button>
       {currentIndex !== steps && (
         <Calculator
           calcConfig={calcConfig}
@@ -159,15 +162,15 @@ function CarFinancePage() {
         />
       )}
       {currentIndex === steps && (
-        <div className='car-finance-table-container'>
-          <button className='back-button' onClick={handleResetCalculator}>
+        <div className="car-finance-table-container">
+          <button className="back-button" onClick={handleResetCalculator}>
             ← Back to Calculator
           </button>
           <h2>Your Car Finance Plan</h2>
 
           {carFinancePayments.length > 0 ? (
-            <div className='table-wrapper'>
-              <table className='car-finance-table'>
+            <div className="table-wrapper">
+              <table className="car-finance-table">
                 <thead>
                   <tr>
                     <th>Monthly Payment</th>
@@ -175,6 +178,7 @@ function CarFinancePage() {
                     <th>Total Interest</th>
                     <th>Car Price</th>
                     <th>Deposit</th>
+                    <th>Loan length (months)</th>
                     <th>Remove</th>
                   </tr>
                 </thead>
@@ -185,27 +189,32 @@ function CarFinancePage() {
                       <td>
                         {payment.totalCarFinanceAmountPayable
                           ? `£${payment.totalCarFinanceAmountPayable.toLocaleString()}`
-                          : 'N/A'}
+                          : "N/A"}
                       </td>
                       <td>
                         {payment.totalCarInterestDue
                           ? `£${payment.totalCarInterestDue.toLocaleString()}`
-                          : 'N/A'}
+                          : "N/A"}
                       </td>
                       <td>
                         {payment.carSellingPrice
                           ? `£${payment.carSellingPrice.toLocaleString()}`
-                          : 'N/A'}
+                          : "N/A"}
                       </td>
                       <td>
                         {payment.carDeposit
                           ? `£${payment.carDeposit.toLocaleString()}`
-                          : 'N/A'}
+                          : "N/A"}
+                      </td>
+                      <td>
+                        {payment.carTerm
+                          ? `${payment.carTerm.toLocaleString()} months`
+                          : "N/A"}
                       </td>
                       <td>
                         <button
                           onClick={() => removeBudget(payment.id)}
-                          className='remove-button'
+                          className="remove-button"
                         >
                           X
                         </button>
@@ -214,12 +223,12 @@ function CarFinancePage() {
                   ))}
                 </tbody>
               </table>
-              <button onClick={() => navigate('/dashboard')}>
+              <button onClick={() => navigate("/dashboard")}>
                 go to dashboard
               </button>
             </div>
           ) : (
-            <div className='no-data-message'>
+            <div className="no-data-message">
               <p>
                 No car finance payments found. Please submit your information
                 using the calculator.

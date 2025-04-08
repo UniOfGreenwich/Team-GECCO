@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 
 :root {
   --color-primary-light: #60a5fa;
@@ -19,16 +19,18 @@
   --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.3);
   --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-card-hover: 0 6px 15px rgba(0, 0, 0, 0.2);
-  --font-primary: 'Boldonse', sans-serif;
-  --font-secondary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-primary: "Boldonse", sans-serif;
+  --font-secondary:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --color-primary-medium-rgb: 59, 130, 246;
   --color-primary-light-rgb: 96, 165, 250;
   --color-text-light-rgb: 243, 244, 246;
-  --shadow-glow-blue: 0 0 8px rgba(var(--color-primary-medium-rgb), 0.5),
+  --shadow-glow-blue:
+    0 0 8px rgba(var(--color-primary-medium-rgb), 0.5),
     0 0 15px rgba(var(--color-primary-medium-rgb), 0.3);
-  --shadow-glow-blue-hover: 0 0 12px 3px
-      rgba(var(--color-primary-medium-rgb), 0.7),
+  --shadow-glow-blue-hover:
+    0 0 12px 3px rgba(var(--color-primary-medium-rgb), 0.7),
     0 0 25px 5px rgba(var(--color-primary-medium-rgb), 0.4);
   --shadow-glow-blue-subtle: 0 0 8px rgba(var(--color-primary-light-rgb), 0.4);
 }
@@ -189,8 +191,12 @@
       border-radius: var(--radius-card);
       border: none;
       cursor: pointer;
-      transition: filter 0.2s ease, transform 0.1s ease, box-shadow 0.3s ease,
-        background-color 0.2s ease, border-color 0.2s ease;
+      transition:
+        filter 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.3s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
 
       &:disabled {
         background-color: var(--color-text-muted) !important;
@@ -232,9 +238,11 @@
 
         &:focus-visible {
           outline: none;
-          box-shadow: var(--shadow-hover),
+          box-shadow:
+            var(--shadow-hover),
             0 0 0 3px var(--color-background-page),
-            0 0 0 5px var(--color-primary-medium), var(--shadow-glow-blue-hover);
+            0 0 0 5px var(--color-primary-medium),
+            var(--shadow-glow-blue-hover);
         }
       }
 
@@ -261,8 +269,10 @@
 
         &:focus-visible {
           outline: none;
-          box-shadow: 0 0 0 3px var(--color-background-page),
-            0 0 0 5px var(--color-primary-light), var(--shadow-glow-blue-subtle);
+          box-shadow:
+            0 0 0 3px var(--color-background-page),
+            0 0 0 5px var(--color-primary-light),
+            var(--shadow-glow-blue-subtle);
           background-color: rgba(var(--color-primary-light-rgb), 0.1);
         }
       }
@@ -292,7 +302,9 @@
       cursor: pointer;
       font-size: 0.9rem;
       text-decoration: none;
-      transition: color 0.2s ease, text-shadow 0.2s ease;
+      transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
       opacity: 0;
       padding: 0.2rem 0.4rem;
       border-radius: var(--radius-card);
@@ -358,8 +370,11 @@
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: background-color 0.2s ease, transform 0.1s ease,
-      box-shadow 0.2s ease, color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s ease,
+      box-shadow 0.2s ease,
+      color 0.2s ease;
     opacity: 0;
 
     @media (prefers-reduced-motion: no-preference) {
@@ -384,8 +399,10 @@
 
     &:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 2px var(--color-background-page),
-        0 0 0 4px var(--color-primary-light), var(--shadow-glow-blue-subtle);
+      box-shadow:
+        0 0 0 2px var(--color-background-page),
+        0 0 0 4px var(--color-primary-light),
+        var(--shadow-glow-blue-subtle);
       background-color: rgba(var(--color-primary-light-rgb), 0.1);
       color: var(--color-text-light);
     }

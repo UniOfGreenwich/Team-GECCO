@@ -4,16 +4,27 @@
 
 ### Frontend:
 
-1) Clone the repository and open the folder in prefered IDE (recommended VSCode)
-2) Type: cd finance-helper-frontend in termainal
-3) Run npm install in terminal
-4) Run npm run dev in terminal
+1) Clone the repository and open the folder in prefered IDE (recommended VSCode).
+2) Type: "cd frontend/BudgetingBuddy-frontend" in your preferred IDE terminal.
+3) Run "npm install" in terminal.
+4) Run "npm run dev" in terminal.
 5) Follow the link to loalhost:PORT
 
 
 ### Backend:
 
 1) Clone the repository and open the folder in the preferred IDE (recommeneded Intellji)
+2) Type "cd backend" into your preferred IDE terminal.
+
+Option 1: Log-In System:
+3) type "cd LogInSystem"
+4) run "./gradlew clean build"
+5) start the application when ready.
+
+Option 2: Budgeting Calculator
+3) tupe "cd budgetingCalculator" in your preferred IDE terminal.
+4) run "./gradlew clean build" in preferred IDE terminal.
+5) start the application when ready.
 
 
 

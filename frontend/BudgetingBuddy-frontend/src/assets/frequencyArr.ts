@@ -1,3 +1,3 @@
-const frequencyVal = ['daily', 'weekly', 'biweekly', 'monthly']
+const frequencyVal = ["daily", "weekly", "biweekly", "monthly"];
 
-export default frequencyVal
+export default frequencyVal;

@@ -42,13 +42,13 @@ interface UserMoneyInfoContextType {
     amount: number,
     description: string,
     category: string,
-    period: Frequency
+    period: Frequency,
   ) => void;
   setBudget: (
     amount: number,
     name: string,
     period: Frequency,
-    additionalProps?: any
+    additionalProps?: any,
   ) => void;
   removeIncome: (id: string) => void;
   removeExpense: (id: string) => void;

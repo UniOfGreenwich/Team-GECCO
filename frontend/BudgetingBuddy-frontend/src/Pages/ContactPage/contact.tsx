@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './contact.scss';
+import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import "./contact.scss";
 
 const Contact: React.FC = () => {
   const navigate = useNavigate(); // Initialize navigate function
@@ -10,8 +10,8 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className='contact-container'>
-      <button className='back-button' onClick={handleBackClick}>
+    <div className="contact-container">
+      <button className="back-button" onClick={handleBackClick}>
         ← Back
       </button>
       <h2>Contact Us</h2>

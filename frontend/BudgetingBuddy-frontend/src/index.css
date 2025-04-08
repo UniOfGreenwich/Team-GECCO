@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 
 :root {
-  --font-primary: 'Boldonse', sans-serif;
+  --font-primary: "Boldonse", sans-serif;
   --font-secondary: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   --color-primary-dark: #4880fa;
@@ -103,7 +103,9 @@ button {
   font-family: inherit;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: background-color 0.2s ease, border-color 0.2s ease,
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
     transform 0.1s ease;
 }
 

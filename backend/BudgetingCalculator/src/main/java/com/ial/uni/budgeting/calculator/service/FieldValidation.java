@@ -40,4 +40,12 @@ public class FieldValidation {
         }
     }
 
+    public static void validateCustomSavingRequiredFields(BudgetingUserRequest request) throws BudgetingException {
+        if (request.getCustomSavingAmount() == null || request.getCustomSavingAmount() <= 0) {
+            throw new BudgetingException("Custom saving amount must be a valid positive number.", ErrorCode.CS_001);
+        } else if (request.getCustomSavingAmountDuration() <= 0) {
+            throw new BudgetingException("Customer saving duration must be bigger than 0.", ErrorCode.CS_002);
+        }
+    }
+
 }

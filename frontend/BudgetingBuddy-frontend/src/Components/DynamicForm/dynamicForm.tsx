@@ -5,7 +5,7 @@ interface FormField {
   label: string;
   type: string;
   UniqueId: string;
-  value?: string
+  value?: string;
 }
 
 interface DynamicFormProps {
@@ -18,7 +18,14 @@ interface DynamicFormProps {
 }
 
 const DynamicForm = (Props: DynamicFormProps) => {
-  const { formValues, onFormSubmit, options, className, dontClearFields, buttonName } = Props;
+  const {
+    formValues,
+    onFormSubmit,
+    options,
+    className,
+    dontClearFields,
+    buttonName,
+  } = Props;
   const [formInputtedValues, setFormInputtedValues] = useState<
     Record<string, string>
   >({});
@@ -31,42 +38,44 @@ const DynamicForm = (Props: DynamicFormProps) => {
   };
 
   useEffect(() => {
-    console.log(formInputtedValues)
-    console.log(formValues.forEach(field => {
-      console.log(field.UniqueId)
-    }))
-  },[formValues, formInputtedValues])
+    console.log(formInputtedValues);
+    console.log(
+      formValues.forEach((field) => {
+        console.log(field.UniqueId);
+      }),
+    );
+  }, [formValues, formInputtedValues]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onFormSubmit(formInputtedValues);
 
     const clearedState: Record<string, string> = {};
-    if(!dontClearFields){
-      formValues.forEach(field => {
-        clearedState[field.UniqueId] = '';
+    if (!dontClearFields) {
+      formValues.forEach((field) => {
+        clearedState[field.UniqueId] = "";
       });
     }
-    setFormInputtedValues(prevState => ({ ...prevState, ...clearedState })); 
+    setFormInputtedValues((prevState) => ({ ...prevState, ...clearedState }));
   };
 
-   const formClassName = `dynamic-form ${className || ''}`.trim(); 
+  const formClassName = `dynamic-form ${className || ""}`.trim();
 
   return (
     <form onSubmit={handleSubmit} className={formClassName}>
-    {formValues.map((input: FormField) => (
-      <StandardInput
-        key={input.UniqueId}
-        label={input.label}
-        type={input.type}
-        value={formInputtedValues[input.UniqueId] || input.value || ""}
-        onChange={(value) => handleChange(value, input.UniqueId)}
-        options={options}
-        required={true} 
-      />
-    ))}
-    <button type="submit">{buttonName}</button>
-  </form>
+      {formValues.map((input: FormField) => (
+        <StandardInput
+          key={input.UniqueId}
+          label={input.label}
+          type={input.type}
+          value={formInputtedValues[input.UniqueId] || input.value || ""}
+          onChange={(value) => handleChange(value, input.UniqueId)}
+          options={options}
+          required={true}
+        />
+      ))}
+      <button type="submit">{buttonName}</button>
+    </form>
   );
 };
 
