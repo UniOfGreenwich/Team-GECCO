@@ -5,11 +5,9 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
 
-    //AlwaysRequiredField
-    BC_001("Available budget must be a valid positive number."),
-
     //MortgageRequiredField
-    MD_001("House price must be a valid positive number."),
+    MD_001("Available budget must be a valid positive number."),
+    MD_002("House price must be a valid positive number."),
 
     //CarFinanceRequiredField
     CF_001("Car Selling Price must be a valid positive number."),

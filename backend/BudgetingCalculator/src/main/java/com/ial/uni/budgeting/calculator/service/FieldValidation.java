@@ -9,16 +9,11 @@ import lombok.NoArgsConstructor;
 
 public class FieldValidation {
 
-    private static void validateAlwaysRequiredFields(BudgetingUserRequest request) throws BudgetingException {
-        if(request.getAvailableBudgetingAmount() == null || request.getAvailableBudgetingAmount() <= 0) {
-            throw new BudgetingException("Available budgeting amount must be a valid positive number, and not empty.", ErrorCode.BC_001);
-        }
-    }
-
     public static void validateMortgageRequiredFields(BudgetingUserRequest request) throws BudgetingException {
-        validateAlwaysRequiredFields(request);
-        if (request.getHousePrice() == null || request.getHousePrice() < 0){
-            throw new BudgetingException ("House price must be a valid positive number, and not empty.", ErrorCode.MD_001);
+        if(request.getAvailableBudgetingAmount() == null || request.getAvailableBudgetingAmount() <= 0) {
+            throw new BudgetingException("Available budgeting amount must be a valid positive number, and not empty.", ErrorCode.MD_001);
+        } else if (request.getHousePrice() == null || request.getHousePrice() < 0){
+            throw new BudgetingException ("House price must be a valid positive number, and not empty.", ErrorCode.MD_002);
         }
     }
 
