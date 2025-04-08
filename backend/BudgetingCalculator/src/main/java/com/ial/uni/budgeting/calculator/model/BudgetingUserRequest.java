@@ -27,5 +27,9 @@ public class BudgetingUserRequest {
     private int holidaySavingDuration;
     private Double holidaySpendingMoney;
 
+    //custom saving fields
+    private Double customSavingAmount;
+    private int customSavingAmountDuration;
+
 }
 
