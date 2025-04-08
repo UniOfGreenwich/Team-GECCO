@@ -28,9 +28,6 @@ const SignIn: React.FC = () => {
 
         <h2 className="signin-title">Budgeting Buddy Sign In</h2>
 
-        <form onSubmit={handleSubmit} className="signin-form" noValidate>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
             <input
               id="username"
               type="text"
