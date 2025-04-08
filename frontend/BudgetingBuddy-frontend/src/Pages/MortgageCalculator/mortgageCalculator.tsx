@@ -29,7 +29,7 @@ function MortgageCalculatorPage() {
   });
 
   const mortgagePayments = userMoneyInfo.budgets.filter(
-    (budget) => budget.name === "mortgagePayment",
+    (budget) => budget.name === "mortgagePayment"
   );
 
   const reqBody = {
@@ -41,7 +41,7 @@ function MortgageCalculatorPage() {
     URL,
     method,
     headers,
-    reqBody,
+    reqBody
   );
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function MortgageCalculatorPage() {
         Number(mortgageValues.savingMonthlyAmount),
         "mortgagePayment",
         "monthly",
-        data,
+        data
       );
     }
   }, [data]);
@@ -112,12 +112,17 @@ function MortgageCalculatorPage() {
   return (
     <div className="mortgage-calculator-page">
       {currentIndex !== steps - 1 && (
-        <Calculator
-          calcConfig={calcConfig}
-          steps={steps}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
+        <div>
+          <button className="back-button" onClick={() => navigate(-1)}>
+            Back
+          </button>
+          <Calculator
+            calcConfig={calcConfig}
+            steps={steps}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+          />
+        </div>
       )}
       {currentIndex === steps - 1 && (
         <div className="mortgage-table-container">
