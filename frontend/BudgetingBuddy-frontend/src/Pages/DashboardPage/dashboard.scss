@@ -588,6 +588,30 @@
   }
 }
 
+.title-button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create-button {
+  margin-bottom: 40px;
+  background-color: transparent;
+  color: var(--color-primary-light);
+  border: 1px solid var(--color-primary-light);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+}
+
 .summary-section {
   margin-bottom: 3rem;
 }
