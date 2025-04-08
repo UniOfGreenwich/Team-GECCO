@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BudgetingCustomSavingResponse {
+public class BudgetingUserCustomSavingResponse {
 
     //custom saving fields
     private Double customSavingMonthlyPayment;

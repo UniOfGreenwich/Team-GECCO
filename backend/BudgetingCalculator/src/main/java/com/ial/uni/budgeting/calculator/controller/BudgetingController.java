@@ -1,10 +1,7 @@
 package com.ial.uni.budgeting.calculator.controller;
 
 import com.ial.uni.budgeting.calculator.model.BudgetingUserRequest;
-import com.ial.uni.budgeting.calculator.model.response.BudgetingCustomSavingResponse;
-import com.ial.uni.budgeting.calculator.model.response.BudgetingUserCarFinanceResponse;
-import com.ial.uni.budgeting.calculator.model.response.BudgetingUserHolidayResponse;
-import com.ial.uni.budgeting.calculator.model.response.BudgetingUserMortgageResponse;
+import com.ial.uni.budgeting.calculator.model.response.*;
 import com.ial.uni.budgeting.calculator.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +20,8 @@ public class BudgetingController {
     @Autowired BudgetingHolidayAmount budgetingHolidayAmount;
 
     @Autowired BudgetingCustomSavingAmount budgetingCustomSavingAmount;
+
+    @Autowired BudgetingPensionContribution budgetingPensionContribution;
 
 
 
@@ -57,11 +56,20 @@ public class BudgetingController {
     }
 
     @PostMapping(value = "/calculateCustomSavingAmount")
-    public ResponseEntity<BudgetingCustomSavingResponse> calculateCustomSaving(@RequestBody BudgetingUserRequest budgetingUserRequest) {
+    public ResponseEntity<BudgetingUserCustomSavingResponse> calculateCustomSaving(@RequestBody BudgetingUserRequest budgetingUserRequest) {
 
         FieldValidation.validateCustomSavingRequiredFields(budgetingUserRequest);
 
-        BudgetingCustomSavingResponse response = budgetingCustomSavingAmount.calculateCustomSavingAmount(budgetingUserRequest);
+        BudgetingUserCustomSavingResponse response = budgetingCustomSavingAmount.calculateCustomSavingAmount(budgetingUserRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping(value = "/calculatePensionContribution")
+    public ResponseEntity<BudgetingUserPensionContributionResponse> calculatePensionContribution(@RequestBody BudgetingUserRequest budgetingUserRequest) {
+
+        FieldValidation.validatePensionContributionRequiredFields(budgetingUserRequest);
+
+        BudgetingUserPensionContributionResponse response = budgetingPensionContribution.calculatePensionContribution(budgetingUserRequest);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

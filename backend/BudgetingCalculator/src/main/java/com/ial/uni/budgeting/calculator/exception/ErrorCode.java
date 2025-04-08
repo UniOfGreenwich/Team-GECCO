@@ -23,7 +23,15 @@ public enum ErrorCode {
 
     //CustomSavingField
     CS_001("Custom saving amount must be a valid positive number."),
-    CS_002("Custom saving duration must be bigger than 0.");
+    CS_002("Custom saving duration must be bigger than 0."),
+
+    //PensionContributionField
+    PC_001("Employee salary must be a valid positive number."),
+    PC_002("Employee contribution rate must be between 0 and 8, and not empty."),
+    PC_003("Employer contribution rate must be between 0 and 8, and not empty."),
+    PC_004("Existing retirement funds must be a valid positive number."),
+    PC_005("Years til retirement must be between 0 and 68, and not empty."),
+    PC_006("Employee earns less than £6396 annually and therefore does not met the threshold.");
 
 
     private final String message;

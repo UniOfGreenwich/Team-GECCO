@@ -1,7 +1,7 @@
 package com.ial.uni.budgeting.calculator.service;
 
 import com.ial.uni.budgeting.calculator.model.BudgetingUserRequest;
-import com.ial.uni.budgeting.calculator.model.response.BudgetingCustomSavingResponse;
+import com.ial.uni.budgeting.calculator.model.response.BudgetingUserCustomSavingResponse;
 import org.springframework.stereotype.Service;
 
 import static com.ial.uni.budgeting.calculator.util.FinanceUtil.truncateDownToTwoDecimals;
@@ -9,8 +9,8 @@ import static com.ial.uni.budgeting.calculator.util.FinanceUtil.truncateDownToTw
 @Service
 public class BudgetingCustomSavingAmount {
 
-    public BudgetingCustomSavingResponse calculateCustomSavingAmount(BudgetingUserRequest request) {
-        BudgetingCustomSavingResponse response = new BudgetingCustomSavingResponse();
+    public BudgetingUserCustomSavingResponse calculateCustomSavingAmount(BudgetingUserRequest request) {
+        BudgetingUserCustomSavingResponse response = new BudgetingUserCustomSavingResponse();
 
         double savingAmount = request.getCustomSavingAmount();
         double savingDuration = request.getCustomSavingAmountDuration();

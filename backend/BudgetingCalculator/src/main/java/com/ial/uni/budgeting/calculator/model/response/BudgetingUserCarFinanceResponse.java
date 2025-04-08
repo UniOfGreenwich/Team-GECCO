@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BudgetingUserCarFinanceResponse {
 
-    //car finance fields
+    //car finance values
     private double monthlyCarFinancePayment;
     private double totalCarFinanceAmountPayable;
     private double totalCarInterestDue;

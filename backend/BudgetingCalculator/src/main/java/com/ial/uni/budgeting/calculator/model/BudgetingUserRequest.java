@@ -31,5 +31,12 @@ public class BudgetingUserRequest {
     private Double customSavingAmount;
     private int customSavingAmountDuration;
 
+    //pension fields
+    private Double pensionGrossSalary;
+    private Double employeePensionContributionRate;
+    private Double employerPensionContributionRate;
+    private Double existingRetirementFunds;
+    private int yearsTilRetirement;
+
 }
 
