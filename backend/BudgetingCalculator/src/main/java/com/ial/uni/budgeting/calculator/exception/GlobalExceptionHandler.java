@@ -1,6 +1,5 @@
 package com.ial.uni.budgeting.calculator.exception;
 
-//import com.ial.uni.budgeting.calculator.model.response.BudgetingErrorResponse;
 import com.ial.uni.budgeting.calculator.model.response.BudgetingErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
