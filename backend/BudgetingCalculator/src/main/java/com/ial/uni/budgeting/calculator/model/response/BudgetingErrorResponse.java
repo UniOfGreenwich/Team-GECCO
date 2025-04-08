@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class BudgetingErrorResponse {
 
+    //Error values
     private LocalDateTime timestamp;
     private String errorCode;
     private String errorMessage;
