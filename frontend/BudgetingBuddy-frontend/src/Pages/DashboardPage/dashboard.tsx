@@ -85,7 +85,7 @@ const Dashboard: React.FC = () => {
       <section className="dashboard-main">
         <div className="summary-section">
           <div className="title-button-container">
-            <h2>Financial Snapshot (nomralised to Monthly)</h2>
+            <h2>Financial Snapshot (normalized to Monthly)</h2>
             <button className="create-button" onClick={() => navigate("/selection")}>
               create a budget
             </button>
