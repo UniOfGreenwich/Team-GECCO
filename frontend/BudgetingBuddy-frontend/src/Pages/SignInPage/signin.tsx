@@ -28,6 +28,11 @@ const SignIn: React.FC = () => {
 
         <h2 className='signin-title'>Budgeting Buddy Sign In</h2>
 
+        <p className='signin-note'>
+          Note: Use <strong>admin123</strong> as the username and password as
+          this functionality is not fully implemented.
+        </p>
+
         <form onSubmit={handleSubmit} className='signin-form' noValidate>
           <div className='form-group'>
             <label htmlFor='username'>Username</label>
