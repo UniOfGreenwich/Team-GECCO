@@ -111,7 +111,7 @@ function CarFinancePage() {
     URL,
     method,
     headers,
-    reqBody,
+    reqBody
   );
 
   useEffect(() => {
@@ -124,7 +124,7 @@ function CarFinancePage() {
         data.monthlyCarFinancePayment,
         "carFinance",
         "monthly",
-        budgetData,
+        budgetData
       );
     }
   }, [data]);
@@ -144,12 +144,15 @@ function CarFinancePage() {
   };
 
   const carFinancePayments = userMoneyInfo.budgets.filter(
-    (budget) => budget.name === "carFinance",
+    (budget) => budget.name === "carFinance"
   );
 
   const steps = calcConfig.length;
   return (
     <div className="car-finance-page">
+      <button className="back-button" onClick={() => navigate(-1)}>
+        Back
+      </button>
       {currentIndex !== steps && (
         <Calculator
           calcConfig={calcConfig}
