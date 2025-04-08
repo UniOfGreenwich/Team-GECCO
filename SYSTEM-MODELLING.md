@@ -51,3 +51,9 @@ The application allows users to:
 ## 5. System Architecture Diagram
 
 ![Architecture Diagram](./frontend/BudgetingBuddy-frontend/src/assets/architecture-diagram.png)
+
+## 6. Addtional Proof of Ways of Working
+
+![Miro Board](./frontend/BudgetingBuddy-frontend/src/assets/budgeting-project-miro-board.png)
+![Kick Off Meeting](./frontend/BudgetingBuddy-frontend/src/assets/kickoff-meeting-email-invite.png)
+![Reoccurring Weekly Touchpoint](./frontend/BudgetingBuddy-frontend/src/assets/reoccurring-weekly-touchPoint-email-invite.png)
