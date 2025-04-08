@@ -29,7 +29,7 @@ const SignIn: React.FC = () => {
         <h2 className='signin-title'>Budgeting Buddy Sign In</h2>
 
         <p className='signin-note'>
-          Note: Use <strong>admin123</strong> as the username and password as
+          Note: Use <strong>admin123</strong> as the Username and Password as
           this functionality is not fully implemented.
         </p>
 
