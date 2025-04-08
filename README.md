@@ -5,7 +5,7 @@
 ### Frontend:
 
 1) Clone the repository and open the folder in prefered IDE (recommended VSCode).
-2) Type: "cd frontend" in your preferred IDE terminal.
+2) Type: "cd frontend/BudgetingBuddy-frontend" in your preferred IDE terminal.
 3) Run "npm install" in terminal.
 4) Run "npm run dev" in terminal.
 5) Follow the link to loalhost:PORT
