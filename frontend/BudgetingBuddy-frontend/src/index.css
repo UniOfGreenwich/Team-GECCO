@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
+
+:root {
+  --font-primary: "Boldonse", sans-serif;
+  --font-secondary: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --color-primary-dark: #4880fa;
+  --color-primary-medium: #3b82f6;
+
+  --radius-card: 8px;
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-card-signin: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  --color-positive: #10b981;
+  --color-negative: #ef4444;
+
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-text-light: #ffffff;
+  --color-text-dark: #1f2937;
+  --color-text-medium: #374151;
+  --color-text-muted: #6b7280;
+  --color-background-light: #ffffff;
+  --color-background-dark: #1f2937;
+  --color-card-background-light: #ffffff;
+  --color-card-background-dark: #2d3748;
+  --color-input-border-light: #d1d5db;
+  --color-input-border-dark: #4a5568;
+  --color-input-focus-border: var(--color-primary-medium);
+  --color-button-text: var(--color-text-light);
+  --color-button-primary-bg: var(--color-primary-dark);
+  --color-button-primary-hover-bg: #1c64f2;
+
+  --color-text: var(--color-text-light);
+  --color-background: var(--color-primary-dark);
+  --color-card-background: var(--color-card-background-light);
+  --color-input-border: var(--color-input-border-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-card-background: var(--color-card-background-dark);
+    --color-input-border: var(--color-input-border-dark);
+    --color-button-primary-bg: var(--color-primary-medium);
+    --color-button-primary-hover-bg: var(--color-primary-dark);
+  }
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-secondary);
+  color: var(--color-text-light);
+  background-color: var(--color-primary-dark);
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .dashboard-container,
+.signin-page-container,
+.welcome-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+} */
+
+a {
+  font-weight: 500;
+  color: var(--color-text-light);
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+  color: var(--color-text-light);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--color-primary-medium);
+  outline-offset: 1px;
+  border-radius: 2px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+input:focus:not(:focus-visible) {
+  outline: none;
+}

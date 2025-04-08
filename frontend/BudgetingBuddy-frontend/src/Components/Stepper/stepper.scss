@@ -1,0 +1,88 @@
+$primary-color: #1a4e8a;
+$disabled-color: #d0d7dd;
+$connector-color: #b0b8bf;
+$hover-background-color: #e6ebf1;
+$button-size: 24px;
+$button-padding: 8px;
+$tick-image-size: 11px;
+$transition-duration: 0.3s;
+
+.stepper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 50px;
+  width: 100%;
+
+  .step-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    flex-grow: 1;
+    flex-basis: 0;
+
+    &:last-child {
+      flex-grow: 0;
+    }
+
+    .connector {
+      height: 2px;
+      flex-grow: 1;
+      border-radius: 16px;
+      background: $connector-color;
+    }
+
+    .step-button {
+      display: flex;
+      flex-shrink: 0;
+      width: $button-size;
+      height: $button-size;
+      border-radius: 50%;
+      padding: $button-padding;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $primary-color;
+      background-color: #ffffff;
+      color: $primary-color;
+      transition:
+        background-color $transition-duration,
+        border-color $transition-duration;
+      cursor: pointer;
+
+      &.disabled {
+        border: 2px solid $disabled-color;
+        color: $disabled-color;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      &.active {
+        background-color: $primary-color;
+        color: #ffffff;
+      }
+
+      &.completed {
+        background-color: #ffffff;
+        border: 2px solid $primary-color;
+        color: $primary-color;
+
+        &:hover {
+          background-color: $hover-background-color;
+        }
+      }
+
+      &:hover:not(.active):not(.disabled) {
+        background-color: $hover-background-color;
+      }
+
+      .tick-image {
+        width: $tick-image-size;
+        height: $tick-image-size;
+        display: block;
+      }
+    }
+  }
+}

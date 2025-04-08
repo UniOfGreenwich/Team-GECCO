@@ -1,0 +1,414 @@
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
+
+:root {
+  --color-primary-light: #60a5fa;
+  --color-primary-medium: #3b82f6;
+  --color-primary-dark: #1e40af;
+  --color-positive: #10b981;
+  --color-negative: #ef4444;
+  --color-warning: #f59e0b;
+  --color-text-light: #f3f4f6;
+  --color-text-dark: #111827;
+  --color-text-muted-light: #cbd5e1;
+  --color-text-muted: #9ca3af;
+  --color-input-border-dark: #475569;
+  --color-background-page: #3a73ee;
+  --color-background-secondary: #1f2937;
+  --radius-card: 8px;
+  --radius-card-large: 12px;
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-card-hover: 0 6px 15px rgba(0, 0, 0, 0.2);
+  --font-primary: "Boldonse", sans-serif;
+  --font-secondary: sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes pulse-blue {
+    0% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+  }
+  @keyframes pulse-green {
+    0% {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+  }
+  @keyframes scaleUnderline {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-3px, 0, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(3px, 0, 0);
+    }
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.signin-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--color-background-page);
+  padding: 1rem;
+  box-sizing: border-box;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+}
+
+.signin-card {
+  position: relative;
+  background-color: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 2.5rem;
+  border-radius: var(--radius-card-large);
+  box-shadow: var(--shadow-card-hover);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  box-sizing: border-box;
+
+  .back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    border-radius: var(--radius-card);
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
+
+    &:hover {
+      color: var(--color-text-muted-light);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+    &:active {
+      color: var(--color-text-light);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--color-text-muted-light);
+      outline-offset: 1px;
+    }
+  }
+}
+
+.signin-title {
+  font-family: var(--font-primary);
+  font-size: 2.2rem;
+  color: var(--color-text-light);
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  font-weight: normal;
+  padding-top: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  text-align: left;
+  position: relative;
+
+  label {
+    display: block;
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted-light);
+    margin-bottom: 0.5rem;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-secondary);
+    color: var(--color-text-light);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-input-border-dark);
+    border-radius: var(--radius-card);
+    box-sizing: border-box;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-primary-medium);
+      transform: scaleX(0);
+      transform-origin: center;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary-medium);
+      box-shadow: none;
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary-medium);
+      outline-offset: 2px;
+      border-color: var(--color-input-border-dark);
+      &::after {
+        transform: scaleX(0);
+      }
+    }
+
+    &::placeholder {
+      color: var(--color-text-muted);
+      opacity: 0.8;
+    }
+
+    &[aria-invalid="true"] {
+      border-color: var(--color-negative);
+      &:focus {
+        border-color: var(--color-negative);
+        &::after {
+          background-color: var(--color-negative);
+          transform: scaleX(1);
+        }
+      }
+      &:focus-visible {
+        outline-color: var(--color-negative);
+        border-color: var(--color-negative);
+        &::after {
+          transform: scaleX(0);
+        }
+      }
+    }
+  }
+}
+
+.error-message {
+  color: var(--color-negative);
+  background-color: rgba(var(--color-negative, 239, 68, 68), 0.15);
+  border: 1px solid rgba(var(--color-negative, 239, 68, 68), 0.4);
+  border-radius: var(--radius-card);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+  margin: -0.5rem 0 0.5rem 0;
+  font-weight: 500;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: shake 0.5s ease-in-out;
+  }
+}
+
+.signin-button {
+  background-color: var(--color-positive);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: var(--radius-card);
+  padding: 0.9rem 1.5rem;
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    filter 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+  width: 100%;
+  margin-top: 0.5rem;
+  box-shadow: var(--shadow-card);
+
+  &:hover:not(:disabled) {
+    filter: brightness(110%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  &:active:not(:disabled) {
+    filter: brightness(90%);
+    transform: translateY(0);
+    box-shadow: var(--shadow-card);
+  }
+
+  &:disabled {
+    background-color: var(--color-text-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+    filter: none;
+    animation: none !important;
+  }
+
+  &:not(:disabled) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: pulse-green 2.5s infinite 1s;
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-positive);
+    outline-offset: 2px;
+    filter: brightness(110%);
+  }
+
+  &.is-loading {
+    position: relative;
+    color: transparent !important;
+    filter: brightness(90%);
+    pointer-events: none;
+    animation: none !important;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      @media (prefers-reduced-motion: no-preference) {
+        animation: spin 0.8s linear infinite;
+      }
+    }
+  }
+}
+
+.signin-links {
+  margin-top: 2rem;
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  color: var(--color-text-muted-light);
+
+  .signup-link-button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    color: var(--color-primary-light);
+    background-color: transparent;
+    border: 1px solid var(--color-primary-light);
+    border-radius: var(--radius-card);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.1s ease,
+      border-color 0.2s ease;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: rgba(var(--color-primary-light, 96, 165, 250), 0.1);
+      color: var(--color-primary-light);
+      border-color: var(--color-primary-light);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      background-color: rgba(var(--color-primary-light, 96, 165, 250), 0.2);
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary-light);
+      outline-offset: 2px;
+      background-color: rgba(var(--color-primary-light, 96, 165, 250), 0.1);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .signin-card {
+    padding: 2rem 1.5rem;
+  }
+  .signin-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .form-group {
+    input[type="text"],
+    input[type="password"] {
+      padding: 0.7rem 0.9rem;
+      font-size: 0.95rem;
+    }
+  }
+  .signin-button,
+  .signup-link-button {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
