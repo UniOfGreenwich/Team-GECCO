@@ -67,7 +67,7 @@ const Dashboard: React.FC = () => {
 
   const displayValueOrNull = (
     value: number,
-    sourceArray: unknown[],
+    sourceArray: unknown[]
   ): string => {
     return sourceArray.length > 0 ? formatCurrency(value) : "NULL";
   };
@@ -84,14 +84,19 @@ const Dashboard: React.FC = () => {
 
       <section className="dashboard-main">
         <div className="summary-section">
-          <h2>Financial Snapshot (Monthly Normalised)</h2>
+          <div className="title-button-container">
+            <h2>Financial Snapshot (normalized to Monthly)</h2>
+            <button className="create-button" onClick={() => navigate("/selection")}>
+              create a budget
+            </button>
+          </div>
           <div className="summary-cards">
             <div className="card income-card">
               <h3>Total Income</h3>
               <p>
                 {displayValueOrNull(
                   userMoneyInfo.totalIncome,
-                  userMoneyInfo.incomes,
+                  userMoneyInfo.incomes
                 )}
               </p>
             </div>
@@ -100,7 +105,7 @@ const Dashboard: React.FC = () => {
               <p>
                 {displayValueOrNull(
                   userMoneyInfo.totalExpenses,
-                  userMoneyInfo.expenses,
+                  userMoneyInfo.expenses
                 )}
               </p>
             </div>
@@ -109,7 +114,7 @@ const Dashboard: React.FC = () => {
               <p>
                 {displayValueOrNull(
                   userMoneyInfo.totalBudgets,
-                  userMoneyInfo.budgets,
+                  userMoneyInfo.budgets
                 )}
               </p>
             </div>
@@ -123,7 +128,7 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
-        <button onClick={() => navigate("/selection")}>create a budget</button>
+
         <div className="details-section">
           <div className="recent-activity-section">
             <h2>Recent Activity</h2>
