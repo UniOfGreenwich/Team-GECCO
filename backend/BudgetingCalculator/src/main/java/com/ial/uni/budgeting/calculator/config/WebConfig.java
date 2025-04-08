@@ -13,7 +13,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*", "https://uniofgreenwich.github.io/Team-GECCO/" )
+                        .allowedOrigins("http://localhost:5304", "https://uniofgreenwich.github.io/Team-GECCO/" )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
